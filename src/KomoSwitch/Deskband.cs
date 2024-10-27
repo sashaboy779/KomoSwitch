@@ -13,8 +13,8 @@ namespace KomoSwitch
 
         public Deskband()
         {
-            Options.MinHorizontalSize = new Size(300, 30);
-            _control = new UserControl1(this);
+            Options.MinHorizontalSize = new Size(600, 30);
+            _control = new WorkspacesContainer(this);
         }
 
         protected override Control Control => _control;

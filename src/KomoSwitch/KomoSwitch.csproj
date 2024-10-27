@@ -47,19 +47,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSDeskBand.cs" />
-    <Compile Include="Deskband.cs" />
-    <Compile Include="UserControl1.cs">
+    <Compile Include="Models\WorkspaceFocusedEventArgs.cs" />
+    <Compile Include="Models\WorkspaceState.cs" />
+    <Compile Include="WorkspaceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl1.Designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <Compile Include="WorkspaceControl.Designer.cs">
+      <DependentUpon>WorkspaceControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Deskband.cs" />
+    <Compile Include="WorkspacesContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkspacesContainer.Designer.cs">
+      <DependentUpon>WorkspacesContainer.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="UserControl1.resx">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <EmbeddedResource Include="WorkspaceControl.resx">
+      <DependentUpon>WorkspaceControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkspacesContainer.resx">
+      <DependentUpon>WorkspacesContainer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
