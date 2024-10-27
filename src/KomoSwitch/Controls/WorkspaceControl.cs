@@ -49,8 +49,11 @@ namespace KomoSwitch
                 : _backgroundHoverColor;
         }
 
-        private void lbl_name_Click(object sender, EventArgs e)
+        private void lbl_name_MouseClick(object sender, MouseEventArgs e)
         {
+            if (e.Button != MouseButtons.Left)
+                return;
+
             var isFocused = IsControlFocused();
             
             if (isFocused)

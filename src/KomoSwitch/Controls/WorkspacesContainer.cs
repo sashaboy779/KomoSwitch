@@ -55,21 +55,8 @@ namespace KomoSwitch
         private void OnWorkspaceFocused(object sender, WorkspaceFocusedEventArgs e)
         {
             _focusedControl?.SetFocus(false);
-            SwitchWorkspace(e.Index);
+            CommandPromptWrapper.FocusWorkspace(e.Index);
             _focusedControl = (WorkspaceControl)sender;
-        }
-        
-        private static void SwitchWorkspace(int index) 
-        {
-            var process = new Process();
-            var startInfo = new ProcessStartInfo
-            {
-                WindowStyle = ProcessWindowStyle.Hidden,
-                FileName = "komorebic.exe",
-                Arguments = $"focus-workspace {index}"
-            };
-            process.StartInfo = startInfo;
-            process.Start();
         }
     }
 }

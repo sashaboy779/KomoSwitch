@@ -74,7 +74,7 @@ namespace KomoSwitch
             this.lbl_name.TabIndex = 1;
             this.lbl_name.Text = "1";
             this.lbl_name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_name.Click += new System.EventHandler(this.lbl_name_Click);
+            this.lbl_name.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lbl_name_MouseClick);
             this.lbl_name.MouseEnter += new System.EventHandler(this.lbl_name_MouseEnter);
             this.lbl_name.MouseLeave += new System.EventHandler(this.lbl_name_MouseLeave);
             // 
