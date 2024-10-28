@@ -8,6 +8,16 @@ namespace KomoSwitch
         {
             RunCommand("komorebic.exe", $"focus-workspace {index}");
         }
+        
+        public static void SubscribePipe(string pipeName)
+        {
+            RunCommand("komorebic.exe", $"subscribe-pipe {pipeName}");
+        }
+        
+        public static void UnsubscribePipe(string pipeName)
+        {
+            RunCommand("komorebic.exe", $"unsubscribe-pipe {pipeName}");
+        }
 
         public static void OpenFolder(string logsFolderPath)
         {
