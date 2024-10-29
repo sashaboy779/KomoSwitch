@@ -1,4 +1,4 @@
-﻿namespace KomoSwitch
+﻿namespace KomoSwitch.Controls
 {
     partial class WorkspacesContainer
     {

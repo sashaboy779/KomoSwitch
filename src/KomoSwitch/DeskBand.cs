@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using CSDeskBand.ContextMenu;
+using KomoSwitch.Controls;
 using Serilog;
 
 namespace KomoSwitch
@@ -15,13 +16,17 @@ namespace KomoSwitch
     public class DeskBand : CSDeskBand.CSDeskBandWin
     {
         private static Control _control;
+        private readonly EventListener _listener;
 
         public DeskBand()
         {
             InitializeLogger();
             InitializeDeskBand();
+
+            _listener = new EventListener();
+            _control = new WorkspacesContainer(_listener);
             
-            _control = new WorkspacesContainer(this);
+            _listener.Start();
         }
 
         private void InitializeLogger()
@@ -59,8 +64,14 @@ namespace KomoSwitch
 
         protected override void DeskbandOnClosed()
         {
-            Log.Information("KomoSwitch is closed");
+            Log.Information("KomoSwitch is closing");
+
+            Log.Information("Stopping event listener");
+            _listener.Stop();
+            
+            Log.Information("Flushing logs");
             Log.CloseAndFlush();
+            
             base.DeskbandOnClosed();
         }
     }

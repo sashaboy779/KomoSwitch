@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace KomoSwitch
+namespace KomoSwitch.Controls
 {
     partial class WorkspaceControl
     {
@@ -53,8 +53,8 @@ namespace KomoSwitch
             // pnl_line
             // 
             this.pnl_line.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.pnl_line.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_line.Location = new System.Drawing.Point(0, 94);
+            this.pnl_line.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnl_line.Location = new System.Drawing.Point(0, 0);
             this.pnl_line.Name = "pnl_line";
             this.pnl_line.Size = new System.Drawing.Size(53, 6);
             this.pnl_line.TabIndex = 1;
