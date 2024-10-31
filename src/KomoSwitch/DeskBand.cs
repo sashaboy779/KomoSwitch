@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using CSDeskBand.ContextMenu;
+using KomoSwitch.CommandPrompt;
 using KomoSwitch.Controls;
 using Serilog;
 

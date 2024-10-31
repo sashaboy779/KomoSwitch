@@ -2,6 +2,7 @@
 using System.IO;
 using System.IO.Pipes;
 using System.Threading;
+using KomoSwitch.CommandPrompt;
 using KomoSwitch.Models.EventArgs;
 using KomoSwitch.Models.Notifications;
 using Newtonsoft.Json;
@@ -101,8 +102,14 @@ namespace KomoSwitch
                 {
                     _cancellationTokenSource.Token.ThrowIfCancellationRequested();
                     
-                    CommandPromptWrapper.SubscribePipe(PipeName);
-                    Log.Information("Command was ran. {Attempt} attempts left", attemptsLeft);
+                    var result = CommandPromptWrapper.SubscribePipe(PipeName);
+                    if (result.IsSuccess)
+                    {
+                        Log.Information("Successfully subscribed");
+                        return;
+                    }
+                    
+                    Log.Information("Command was ran. {Attempt} attempts left. Error: {Error}", attemptsLeft, result.Error);
 
                     Thread.Sleep(WaitBetweenSubscribePipeCommand * 1_000);
                     attemptsLeft--;

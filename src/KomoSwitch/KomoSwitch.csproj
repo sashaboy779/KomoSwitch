@@ -79,7 +79,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandPromptWrapper.cs" />
+    <Compile Include="CommandPrompt\CommandPromptWrapper.cs" />
+    <Compile Include="CommandPrompt\CommandResult.cs" />
     <Compile Include="Controls\WorkspaceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

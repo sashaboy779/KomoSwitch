@@ -104,7 +104,7 @@ namespace KomoSwitch.Controls
         {
             _blocked = true;
             
-            _toolTip.SetToolTip(lbl_name, "Connecting to komorebi");
+            _toolTip.SetToolTip(lbl_name, "Connecting to komorebi...");
             
             lbl_name.ForeColor = _waitingColor;
             pnl_line.BackColor = _waitingColor;

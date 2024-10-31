@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using KomoSwitch.CommandPrompt;
 using KomoSwitch.Models;
 using KomoSwitch.Models.EventArgs;
 using Serilog;
