@@ -31,7 +31,8 @@ namespace KomoSwitch.CommandPrompt
             {
                 WindowStyle = isHidden ? ProcessWindowStyle.Hidden : ProcessWindowStyle.Normal,
                 FileName = command,
-                Arguments = arguments
+                Arguments = arguments,
+                CreateNoWindow = true,
             };
             process.StartInfo = startInfo;
             process.Start();
@@ -47,7 +48,8 @@ namespace KomoSwitch.CommandPrompt
                 Arguments = arguments,
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
-                RedirectStandardError = true
+                RedirectStandardError = true,
+                CreateNoWindow = true,
             };
             process.StartInfo = startInfo;
             process.Start();
