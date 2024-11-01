@@ -5,6 +5,7 @@ using System.Threading;
 using KomoSwitch.CommandPrompt;
 using KomoSwitch.Models.EventArgs;
 using KomoSwitch.Models.Notifications;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 using Serilog;
 
@@ -23,9 +24,14 @@ namespace KomoSwitch
         private const string PipeName = "KomoSwitchPipe";
         private const int SubscribeCommandAttempt = 20;
         private const int WaitBetweenSubscribePipeCommand = 3;
+        private const int WaitBeforeReconnectKomorebi = 3;
+        
+        private bool _isWindowsShuttingDown;
         
         public void Start()
         {
+            SystemEvents.SessionEnding += OnSessionEnding;
+
             new Thread(StartPipeLoop).Start();
             new Thread(SubscribeKomorebiToPipe).Start();
         }
@@ -111,7 +117,7 @@ namespace KomoSwitch
                     
                     Log.Information("Command was ran. {Attempt} attempts left. Error: {Error}", attemptsLeft, result.Error);
 
-                    Thread.Sleep(WaitBetweenSubscribePipeCommand * 1_000);
+                    Thread.Sleep(TimeSpan.FromSeconds(WaitBetweenSubscribePipeCommand));
                     attemptsLeft--;
                 }
                     
@@ -150,9 +156,18 @@ namespace KomoSwitch
                     }
                 }
 
-                Log.Warning("Komorebi disconnected. Trying to reconnect");
                 ConnectionLost?.Invoke(this, EventArgs.Empty);
                 
+                Log.Warning("Komorebi disconnected. Waiting for {WaitSeconds} seconds", WaitBeforeReconnectKomorebi);
+                Thread.Sleep(TimeSpan.FromSeconds(WaitBeforeReconnectKomorebi));
+                
+                 if (_isWindowsShuttingDown)
+                 {
+                     Log.Information("No need for retry");
+                     return;
+                 }
+                
+                Log.Information("Trying to reconnect...");
                 new Thread(SubscribeKomorebiToPipe).Start();
             }
             catch (ObjectDisposedException e)
@@ -179,6 +194,18 @@ namespace KomoSwitch
             
             Log.Information("Running unsubscribe pipe command");
             CommandPromptWrapper.UnsubscribePipe(PipeName);
+            
+            SystemEvents.SessionEnding += OnSessionEnding;
+        }
+
+        private void OnSessionEnding(object sender, SessionEndingEventArgs e)
+        {
+            Log.Information("Received session ending event: {Reason}", e.Reason);
+            if (e.Reason != SessionEndReasons.SystemShutdown) 
+                return;
+            
+            Log.Information("Windows is shutting down.");
+            _isWindowsShuttingDown = true;
         }
     }
 }
