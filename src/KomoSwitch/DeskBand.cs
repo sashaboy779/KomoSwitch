@@ -57,7 +57,7 @@ namespace KomoSwitch
             openLogsAction.Clicked += (sender, args) => CommandPromptWrapper.OpenFolder(logsFolder);
             
             Options.ContextMenuItems = new List<DeskBandMenuItem> { openLogsAction };
-            Options.MinHorizontalSize = new Size(600, 30);
+            Options.MinHorizontalSize = new Size(100, 30);
         }
 
         private string GetLogsFolder()
