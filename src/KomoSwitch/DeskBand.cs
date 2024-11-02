@@ -35,14 +35,18 @@ namespace KomoSwitch
             var folder = GetLogsFolder();
             Directory.CreateDirectory(folder);
             
+            const string template = "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {Message} {Properties}{NewLine}";
             var logPath = Path.Combine(folder, "Logs.txt");
+            var trace = DateTime.Now.ToString("yyyyMMddHHmmss");            
             
             Log.Logger = new LoggerConfiguration()
+                .Enrich.WithProperty("Trace", trace)
+                .Enrich.WithThreadId()
                 .MinimumLevel.Debug()
-                .WriteTo.File(logPath, rollingInterval: RollingInterval.Day, retainedFileCountLimit: 7)
+                .WriteTo.File(logPath, outputTemplate: template, rollingInterval: RollingInterval.Day, retainedFileCountLimit: 7)
                 .CreateLogger();
             
-            Log.Information("KomoSwitch is started");
+            Log.Information("KomoSwitch is starting");
         }
 
         private void InitializeDeskBand()

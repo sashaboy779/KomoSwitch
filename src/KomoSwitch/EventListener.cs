@@ -18,8 +18,8 @@ namespace KomoSwitch
         public event EventHandler ConnectionFailed;
         public event EventHandler<WorkspaceFocusedEventArgs> WorkspaceFocused;
         
-        private readonly EventWaitHandle _shutdownEvent = new ManualResetEvent(false);
-        private CancellationTokenSource _cancellationTokenSource;
+        private readonly EventWaitHandle _shutdownPipeLoopEvent = new ManualResetEvent(false);
+        private CancellationTokenSource _subscribeCancellation;
 
         private const string PipeName = "KomoSwitchPipe";
         private const int SubscribeCommandAttempt = 20;
@@ -27,13 +27,14 @@ namespace KomoSwitch
         private const int WaitBeforeReconnectKomorebi = 3;
         
         private bool _isWindowsShuttingDown;
-        
+        private bool _isApplicationShuttingDown;
+
         public void Start()
         {
-            SystemEvents.SessionEnding += OnSessionEnding;
-
             new Thread(StartPipeLoop).Start();
             new Thread(SubscribeKomorebiToPipe).Start();
+            
+            SystemEvents.SessionEnding += OnSessionEnding;
         }
 
         private void StartPipeLoop()
@@ -47,7 +48,7 @@ namespace KomoSwitch
                 Log.Fatal(e, "An unexpected error occured");
             }
         }
-        
+
         private void SubscribeKomorebiToPipe()
         {
             try
@@ -70,19 +71,19 @@ namespace KomoSwitch
                 try
                 {
                     var result = stream.BeginWaitForConnection(HandleConnection, stream);
-                    var waitResult = WaitHandle.WaitAny(new[] { result.AsyncWaitHandle, _shutdownEvent });
-                    _cancellationTokenSource.Cancel();
+                    var waitResult = WaitHandle.WaitAny(new[] { result.AsyncWaitHandle, _shutdownPipeLoopEvent });
+                    _subscribeCancellation.Cancel();
 
                     switch (waitResult)
                     {
                         case 1:
-                            Log.Information("Shutdown requested");
+                            Log.Information("Pipe shutdown requested");
                             isShutdownRequested = true;
                             stream.Close();
                             stream.Dispose();
                             break;
                         case 0:
-                            Log.Information("Komorebi connected");
+                            Log.Information("Komorebi connected to pipe");
                             ConnectionEstablished?.Invoke(this, EventArgs.Empty);
                             break;
                     }
@@ -97,38 +98,36 @@ namespace KomoSwitch
 
         private void SubscribeKomorebiToPipeInternal()
         {
-            _cancellationTokenSource = new CancellationTokenSource();
+            _subscribeCancellation = new CancellationTokenSource();
 
             try
             {
-                Log.Information("Running subscribe pipe command");
-                
                 var attemptsLeft = SubscribeCommandAttempt;
                 while (attemptsLeft != 0)
                 {
-                    _cancellationTokenSource.Token.ThrowIfCancellationRequested();
+                    Log.Information("Running subscribe-pipe command");
+
+                    if (_subscribeCancellation.Token.IsCancellationRequested)
+                    {
+                        Log.Information("Cancellation was requested");
+                        return;
+                    }
                     
                     var result = CommandPromptWrapper.SubscribePipe(PipeName);
                     if (result.IsSuccess)
                     {
-                        Log.Information("Successfully subscribed");
+                        Log.Information("Komorebi Successfully subscribed to pipe");
                         return;
                     }
                     
-                    Log.Information("Command was ran. {Attempt} attempts left. Error: {Error}", attemptsLeft, result.Error);
-
+                    Log.Information("{Attempt} attempts left. Error: {Error}", --attemptsLeft, result.Error);
                     Thread.Sleep(TimeSpan.FromSeconds(WaitBetweenSubscribePipeCommand));
-                    attemptsLeft--;
                 }
                     
                 Log.Error("Ran out of attempts");
                 Stop();
                 
                 ConnectionFailed?.Invoke(this, EventArgs.Empty);
-            }
-            catch (OperationCanceledException)
-            {
-                Log.Information("Gracefully stopped running subscribe pipe command");
             }
             catch (Exception e)
             {
@@ -157,29 +156,39 @@ namespace KomoSwitch
                 }
 
                 ConnectionLost?.Invoke(this, EventArgs.Empty);
-                
-                Log.Warning("Komorebi disconnected. Waiting for {WaitSeconds} seconds", WaitBeforeReconnectKomorebi);
-                Thread.Sleep(TimeSpan.FromSeconds(WaitBeforeReconnectKomorebi));
-                
-                 if (_isWindowsShuttingDown)
-                 {
-                     Log.Information("No need for retry");
-                     return;
-                 }
-                
-                Log.Information("Trying to reconnect...");
-                new Thread(SubscribeKomorebiToPipe).Start();
+                TryReconnect();
             }
             catch (ObjectDisposedException e)
             {
-                Log.Error($"Pipe was disposed, {e.Message}");
+                Log.Error("Pipe was disposed. {Message}", e.Message);
             }
+        }
+
+        private void TryReconnect()
+        {
+            Log.Warning("Komorebi disconnected. Waiting for {WaitSeconds} seconds", WaitBeforeReconnectKomorebi);
+            Thread.Sleep(TimeSpan.FromSeconds(WaitBeforeReconnectKomorebi));
+                
+            if (_isWindowsShuttingDown)
+            {
+                Log.Information("No need to reconnect. Windows is shutting down");
+                return;
+            }
+                 
+            if (_isApplicationShuttingDown)
+            {
+                Log.Information("No need to reconnect. Application is shutting down");
+                return;
+            }
+                
+            Log.Information("Reconnect initiated");
+            new Thread(SubscribeKomorebiToPipe).Start();
         }
 
         private void ProcessNotification(string rawText)
         {
             var notification = JsonConvert.DeserializeObject<Notification>(rawText);
-            Log.Information("Received Event: {Type}", notification.Event.Type);
+            Log.Information("Received: {Type}", notification.Event.Type);
 
             if (notification.Event.Type == "FocusWorkspaceNumber")
             {
@@ -188,14 +197,15 @@ namespace KomoSwitch
             }
         }
 
-        public void Stop() 
+        public void Stop()
         {
-            _shutdownEvent.Set();
+            _isApplicationShuttingDown = true;
+            _shutdownPipeLoopEvent.Set();
             
             Log.Information("Running unsubscribe pipe command");
             CommandPromptWrapper.UnsubscribePipe(PipeName);
             
-            SystemEvents.SessionEnding += OnSessionEnding;
+            SystemEvents.SessionEnding -= OnSessionEnding;
         }
 
         private void OnSessionEnding(object sender, SessionEndingEventArgs e)
