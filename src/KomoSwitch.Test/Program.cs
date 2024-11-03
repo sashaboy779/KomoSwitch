@@ -1,4 +1,5 @@
 ﻿using System;
+using KomoSwitch.Services;
 using Serilog;
 
 namespace KomoSwitch.Test

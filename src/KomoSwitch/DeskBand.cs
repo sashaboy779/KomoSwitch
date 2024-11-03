@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using CSDeskBand.ContextMenu;
 using KomoSwitch.CommandPrompt;
 using KomoSwitch.Controls;
+using KomoSwitch.Services;
 using Serilog;
 
 namespace KomoSwitch
@@ -25,14 +26,14 @@ namespace KomoSwitch
             InitializeDeskBand();
 
             _listener = new EventListener();
-            _control = new WorkspacesContainer(_listener);
+            _control = new WorkspacesContainer(_listener, new Storage());
             
             _listener.Start();
         }
 
         private void InitializeLogger()
         {
-            var folder = GetLogsFolder();
+            var folder = PathManager.LogsFolder;
             Directory.CreateDirectory(folder);
             
             const string template = "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {Message} {Properties}{NewLine}";
@@ -51,18 +52,13 @@ namespace KomoSwitch
 
         private void InitializeDeskBand()
         {
-            var logsFolder = GetLogsFolder();
+            var logsFolder = PathManager.LogsFolder;
             
             var openLogsAction = new DeskBandMenuAction("Open logs folder");
             openLogsAction.Clicked += (sender, args) => CommandPromptWrapper.OpenFolder(logsFolder);
             
             Options.ContextMenuItems = new List<DeskBandMenuItem> { openLogsAction };
             Options.MinHorizontalSize = new Size(100, 30);
-        }
-
-        private string GetLogsFolder()
-        {
-            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "KomoSwitch");
         }
 
         protected override Control Control => _control;

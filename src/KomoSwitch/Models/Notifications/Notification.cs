@@ -6,5 +6,8 @@ namespace KomoSwitch.Models.Notifications
     {
         [JsonProperty("event")]
         public Event Event { get; set; }
+        
+        [JsonProperty("state")]
+        public State State { get; set; }
     }
 }

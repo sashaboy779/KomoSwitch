@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.IO.Pipes;
+using System.Linq;
 using System.Threading;
 using KomoSwitch.CommandPrompt;
 using KomoSwitch.Models.EventArgs;
@@ -9,11 +10,11 @@ using Microsoft.Win32;
 using Newtonsoft.Json;
 using Serilog;
 
-namespace KomoSwitch
+namespace KomoSwitch.Services
 {
     public class EventListener
     {
-        public event EventHandler ConnectionEstablished;
+        public event EventHandler<ConnectionEstablishedEventArgs> ConnectionEstablished;
         public event EventHandler ConnectionLost;
         public event EventHandler ConnectionFailed;
         public event EventHandler<WorkspaceFocusedEventArgs> WorkspaceFocused;
@@ -84,7 +85,6 @@ namespace KomoSwitch
                             break;
                         case 0:
                             Log.Information("Komorebi connected to pipe");
-                            ConnectionEstablished?.Invoke(this, EventArgs.Empty);
                             break;
                     }
                 }
@@ -194,6 +194,18 @@ namespace KomoSwitch
             {
                 var workspaceIndex = Convert.ToInt32(notification.Event.Content);
                 WorkspaceFocused?.Invoke(this, new WorkspaceFocusedEventArgs(workspaceIndex));
+            }
+            else if (notification.Event.Type == "AddSubscriberPipe")
+            {
+                var firstMonitor = notification.State.Monitors.Elements.FirstOrDefault();
+                if (firstMonitor == null)
+                {
+                    Log.Error("No Monitor received from komorebi");
+                    return;
+                }
+                
+                var eventArgs = new ConnectionEstablishedEventArgs(firstMonitor);
+                ConnectionEstablished?.Invoke(this, eventArgs);
             }
         }
 

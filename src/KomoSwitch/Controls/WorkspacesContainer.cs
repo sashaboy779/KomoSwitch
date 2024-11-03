@@ -6,27 +6,32 @@ using System.Windows.Forms;
 using KomoSwitch.CommandPrompt;
 using KomoSwitch.Models;
 using KomoSwitch.Models.EventArgs;
+using KomoSwitch.Services;
 using Serilog;
 
 namespace KomoSwitch.Controls
 {
     public partial class WorkspacesContainer: UserControl
     {
-        private readonly Dictionary<int, WorkspaceControl> _controls = new Dictionary<int, WorkspaceControl>();
+        private readonly Dictionary<int, WorkspaceControl> _workspaceByIndex = new Dictionary<int, WorkspaceControl>();
+        private readonly Storage _storage;
         private WorkspaceControl _focusedControl;
         private CancellationTokenSource _inProgressStateTokenSource;
-        
-        public WorkspacesContainer(EventListener listener)
+
+        public WorkspacesContainer(EventListener listener, Storage storage)
         {
             listener.ConnectionEstablished += ListenerOnConnectionEstablished;
             listener.ConnectionLost += ListenerOnConnectionLost;
             listener.ConnectionFailed += ListenerOnConnectionFailed;
             listener.WorkspaceFocused += ListenerOnWorkspaceFocused;
             
+            _storage = storage;
+            var workspaces = storage.GetWorkspaces();
+
             InitializeComponent();
             SuspendLayout();
-            
-            InitializeWorkspaceControls();
+
+            InitializeWorkspaceControls(workspaces, isPlaceholder: true);
            
             ResumeLayout(false);
             PerformLayout();
@@ -34,41 +39,92 @@ namespace KomoSwitch.Controls
             SetControlsInProgress();
         }
 
-        private void InitializeWorkspaceControls()
+        private void InitializeWorkspaceControls(List<Workspace> workspaces, bool isPlaceholder = false)
         {
-            var workspaceStates = new List<WorkspaceState>()
+            RemovePreviouslyAddedWorkspaces();
+            var controls = SetUpWorkspaceControls(workspaces, isPlaceholder);
+            AddWorkspaces(controls);
+        }
+
+        private void RemovePreviouslyAddedWorkspaces()
+        {
+            Log.Debug("Invoke required to dispose workspaces: {Value}", InvokeRequired);
+
+            if (InvokeRequired)
             {
-                new WorkspaceState("1", 0, true),
-                new WorkspaceState("2", 1, false),
-                new WorkspaceState("3", 2, false),
-                new WorkspaceState("4", 3, false),
-                new WorkspaceState("5", 4, false),
-                new WorkspaceState("6", 5, false),
-                new WorkspaceState("7", 6, false),
-                new WorkspaceState("8", 7, false),
-                new WorkspaceState("9", 8, false),
-            };
+                Invoke(new Action(RemovePreviouslyAddedWorkspaces));
+                return;
+            }
             
-            for (var i = workspaceStates.Count - 1; i >= 0; i--)
+            try
             {
-                var currentWorkspace = workspaceStates[i];
+                foreach (var workspace in _workspaceByIndex.Values)
+                {
+                    workspace.WorkspaceClicked -= OnWorkspaceClicked;
+                    Controls.Remove(workspace);
+                
+                    if (workspace.IsDisposed)
+                    {
+                        Log.Warning("WorkspaceControl was already disposed");
+                    }
+                    else
+                    {
+                        Log.Debug("Disposing WorkspaceControl");
+                        workspace.Dispose();
+                    }
+                }
+                
+                _workspaceByIndex.Clear();
+            }
+            catch (Exception e)
+            {
+                Log.Error(e, "Error when disposing workspaces");
+                throw;
+            }
+        }
+
+        private List<WorkspaceControl> SetUpWorkspaceControls(List<Workspace> workspaces, bool isPlaceholder)
+        {
+            var result = new List<WorkspaceControl>(workspaces.Count);
+            for (var i = workspaces.Count - 1; i >= 0; i--)
+            {
+                var currentWorkspace = workspaces[i];
                 var control = new WorkspaceControl(currentWorkspace);
                 
                 control.AutoSize = true;
                 control.Dock = DockStyle.Left;
                 control.Margin = new Padding(0);
                 control.Padding = new Padding(0, 0, 10, 0);
-                
-                control.WorkspaceClicked += OnWorkspaceClicked;
-                control.SetWaiting();
-            
-                Controls.Add(control);
-                _controls.Add(control.WorkspaceIndex, control);
 
-                if (currentWorkspace.IsFocused)
+                if (!isPlaceholder)
                 {
-                    _focusedControl = control;
+                    control.WorkspaceClicked += OnWorkspaceClicked;
                 }
+
+                result.Add(control);
+            }
+
+            return result;
+        }
+
+        private void AddWorkspaces(List<WorkspaceControl> controls)
+        {
+            Log.Debug("Invoke required to add workspaces: {Value}", InvokeRequired);
+
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => AddWorkspaces(controls)));
+                return;
+            }
+
+            foreach (var control in controls)
+            {
+                _workspaceByIndex.Add(control.WorkspaceIndex, control);
+
+                if (control.IsFocused)
+                    _focusedControl = control;
+                
+                Controls.Add(control);
             }
         }
 
@@ -78,17 +134,22 @@ namespace KomoSwitch.Controls
                 return;
             
             _focusedControl?.SetFocus(false);
-            _focusedControl = _controls[e.Index];
+            _focusedControl = _workspaceByIndex[e.Index];
             _focusedControl.SetFocus(true);
         }
 
-        private void ListenerOnConnectionEstablished(object sender, EventArgs e)
+        private void ListenerOnConnectionEstablished(object sender, ConnectionEstablishedEventArgs e)
         {
             _inProgressStateTokenSource.Cancel();
-
-            foreach (var control in _controls.Values)
+ 
+            try
             {
-                control.SetResume();
+                InitializeWorkspaceControls(e.Workspaces);
+                _storage.SaveWorkspaces(e.Workspaces);
+            }
+            catch (Exception exception)
+            {
+                Log.Error(exception, "An error occured when initializing the workspaces");
             }
         }
 
@@ -101,7 +162,7 @@ namespace KomoSwitch.Controls
         {
             _inProgressStateTokenSource.Cancel();
 
-            foreach (var control in _controls.Values)
+            foreach (var control in _workspaceByIndex.Values)
             {
                 control.SetError();
             }
@@ -114,12 +175,12 @@ namespace KomoSwitch.Controls
             
             _focusedControl?.SetFocus(false);
             CommandPromptWrapper.FocusWorkspace(e.Index);
-            _focusedControl = _controls[e.Index];
+            _focusedControl = _workspaceByIndex[e.Index];
         }
 
         private void SetControlsInProgress()
         {
-            foreach (var control in _controls.Values)
+            foreach (var control in _workspaceByIndex.Values)
             {
                 control.SetWaiting();
             }
@@ -130,7 +191,7 @@ namespace KomoSwitch.Controls
             {
                 try
                 {
-                    var controlsReversed = _controls.Values.Reverse().ToList();
+                    var controlsReversed = _workspaceByIndex.Values.Reverse().ToList();
                     while (true)
                     {
                         foreach (var control in controlsReversed)
