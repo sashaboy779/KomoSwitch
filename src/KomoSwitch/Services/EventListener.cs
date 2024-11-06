@@ -190,12 +190,7 @@ namespace KomoSwitch.Services
             var notification = JsonConvert.DeserializeObject<Notification>(rawText);
             Log.Information("Received: {Type}", notification.Event.Type);
 
-            if (notification.Event.Type == "FocusWorkspaceNumber")
-            {
-                var workspaceIndex = Convert.ToInt32(notification.Event.Content);
-                WorkspaceFocused?.Invoke(this, new WorkspaceFocusedEventArgs(workspaceIndex));
-            }
-            else if (notification.Event.Type == "AddSubscriberPipe")
+            if (notification.Event.Type == "AddSubscriberPipe")
             {
                 var firstMonitor = notification.State.Monitors.Elements.FirstOrDefault();
                 if (firstMonitor == null)
@@ -206,6 +201,12 @@ namespace KomoSwitch.Services
                 
                 var eventArgs = new ConnectionEstablishedEventArgs(firstMonitor);
                 ConnectionEstablished?.Invoke(this, eventArgs);
+            } 
+            else if (notification.Event.Type == "FocusWorkspaceNumber" 
+                 || notification.Event.Type == "MoveContainerToWorkspaceNumber")
+            {
+                var workspaceIndex = Convert.ToInt32(notification.Event.Content);
+                WorkspaceFocused?.Invoke(this, new WorkspaceFocusedEventArgs(workspaceIndex));
             }
         }
 
