@@ -127,6 +127,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Tools\settings.json" />
     <Content Include="Tools\install-deskband.bat" />
     <Content Include="Tools\uninstall-deskband.bat" />
   </ItemGroup>
