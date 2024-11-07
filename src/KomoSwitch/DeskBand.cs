@@ -23,7 +23,7 @@ namespace KomoSwitch
         public DeskBand()
         {
             InitializeLogger();
-            InitializeDeskBand();
+            InitializeSettings();
 
             _listener = new EventListener();
             _control = new WorkspacesContainer(_listener, new Storage());
@@ -50,7 +50,22 @@ namespace KomoSwitch
             Log.Information("KomoSwitch is starting");
         }
 
-        private void InitializeDeskBand()
+        private void InitializeSettings()
+        {
+            try
+            {
+                Settings.Load();
+
+            }
+            catch (Exception e)
+            {
+
+                Log.Fatal(e, "Unable to initialize settings: {Message}", e.Message);
+                throw;
+            }
+        }
+
+        private void InitializeDeskBand(WorkspacesContainer workspacesContainer)
         {
             var logsFolder = PathManager.LogsFolder;
             

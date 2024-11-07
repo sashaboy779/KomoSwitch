@@ -108,11 +108,13 @@
     <Compile Include="Models\Notifications\State.cs" />
     <Compile Include="Models\Notifications\Workspace.cs" />
     <Compile Include="Models\Notifications\WorkspaceElement.cs" />
+    <Compile Include="Models\Settings\EStatusLineLocation.cs" />
     <Compile Include="Models\Workspace.cs" />
     <Compile Include="DeskBand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EventListener.cs" />
     <Compile Include="Services\PathManager.cs" />
+    <Compile Include="Services\Settings.cs" />
     <Compile Include="Services\Storage.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
