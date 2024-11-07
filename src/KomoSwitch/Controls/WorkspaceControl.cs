@@ -22,6 +22,9 @@ namespace KomoSwitch.Controls
         /// Indicates if the control is focused
         /// </summary>
         public bool IsFocused { get; private set; }
+
+        public Panel StatusLine => pnl_line;
+        public Label WorkspaceNameText => lbl_name;
         
         private readonly Color _backgroundDefaultColor = Color.Transparent;
         private readonly Color _backgroundHoverColor = Color.FromArgb(25, Color.Gray);

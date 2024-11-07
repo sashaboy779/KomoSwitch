@@ -26,7 +26,10 @@ namespace KomoSwitch
             InitializeSettings();
 
             _listener = new EventListener();
-            _control = new WorkspacesContainer(_listener, new Storage());
+            var workspacesContainer = new WorkspacesContainer(_listener, new Storage());
+            _control = workspacesContainer;
+            
+            InitializeDeskBand(workspacesContainer);
             
             _listener.Start();
         }
@@ -68,6 +71,13 @@ namespace KomoSwitch
         private void InitializeDeskBand(WorkspacesContainer workspacesContainer)
         {
             var logsFolder = PathManager.LogsFolder;
+            
+            var settingsAction = new DeskBandMenuAction("KomoSwitch Settings");
+            settingsAction.Clicked += (sender, args) =>
+            {
+                var settingsForm = new SettingsForm(workspacesContainer);
+                settingsForm.Show();
+            };
             
             var openLogsAction = new DeskBandMenuAction("Open logs folder");
             openLogsAction.Clicked += (sender, args) => CommandPromptWrapper.OpenFolder(logsFolder);
