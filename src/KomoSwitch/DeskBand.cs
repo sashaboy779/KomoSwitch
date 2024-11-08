@@ -82,8 +82,8 @@ namespace KomoSwitch
             var openLogsAction = new DeskBandMenuAction("Open logs folder");
             openLogsAction.Clicked += (sender, args) => CommandPromptWrapper.OpenFolder(logsFolder);
             
-            Options.ContextMenuItems = new List<DeskBandMenuItem> { openLogsAction };
-            Options.MinHorizontalSize = new Size(100, 30);
+            Options.ContextMenuItems = new List<DeskBandMenuItem> { settingsAction, openLogsAction };
+            Options.MinHorizontalSize = new Size(Settings.Instance.AppMinWidth, 30);
         }
 
         protected override Control Control => _control;
