@@ -64,6 +64,13 @@ namespace KomoSwitch
             {
 
                 Log.Fatal(e, "Unable to initialize settings: {Message}", e.Message);
+                
+                MessageBox.Show($"Unable to run KomoSwitch because of an error in settings.json:{Environment.NewLine}" +
+                    e.Message, 
+                    "KomoSwitch", 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
+                
                 throw;
             }
         }
