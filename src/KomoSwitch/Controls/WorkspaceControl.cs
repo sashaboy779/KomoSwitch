@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using KomoSwitch.Models;
 using KomoSwitch.Models.EventArgs;
+using KomoSwitch.Models.Settings;
+using KomoSwitch.Services;
 
 namespace KomoSwitch.Controls
 {
@@ -27,9 +29,9 @@ namespace KomoSwitch.Controls
         public Label WorkspaceNameText => lbl_name;
         
         private readonly Color _backgroundDefaultColor = Color.Transparent;
-        private readonly Color _backgroundHoverColor = Color.FromArgb(25, Color.Gray);
-        private readonly Color _backgroundFocusedColor = Color.FromArgb(50, Color.Gray);
-        private readonly Color _backgroundHoverWhenFocusedColor = Color.FromArgb(75, Color.Gray);
+        private readonly Color _backgroundHoverColor = Color.FromArgb(25, 128, 128, 128);
+        private readonly Color _backgroundFocusedColor = Color.FromArgb(50, 128, 128, 128);
+        private readonly Color _backgroundHoverWhenFocusedColor = Color.FromArgb(75, 128, 128, 128);
         private readonly Color _labelDefaultColor = Color.White;
         private readonly Color _labelFocusedColor = Color.FromArgb(151, 233, 239);
         private readonly Color _waitingColor = Color.DimGray;
@@ -44,6 +46,9 @@ namespace KomoSwitch.Controls
             
             WorkspaceIndex = workspace.Index;
             lbl_name.Text = workspace.Name;
+            pnl_line.Dock = Settings.Instance.StatusLineLocation == EStatusLineLocation.Bottom
+                ? DockStyle.Bottom
+                : DockStyle.Top;
 
             if (workspace.IsFocused)
             {
