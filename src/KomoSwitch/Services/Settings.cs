@@ -55,5 +55,11 @@ namespace KomoSwitch.Services
             var json = JsonConvert.SerializeObject(settings, SerializerSettings);
             File.WriteAllText(path, json);
         }
+
+        public static void Save()
+        {
+            var json = JsonConvert.SerializeObject(Instance, SerializerSettings);
+            File.WriteAllText(PathManager.SettingsJson, json);
+        }
     }
 }

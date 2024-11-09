@@ -19,6 +19,7 @@ namespace KomoSwitch
     {
         private static Control _control;
         private readonly EventListener _listener;
+        private SettingsForm _currentSettingsForm;
 
         public DeskBand()
         {
@@ -81,8 +82,15 @@ namespace KomoSwitch
             var settingsAction = new DeskBandMenuAction("KomoSwitch Settings");
             settingsAction.Clicked += (sender, args) =>
             {
-                var settingsForm = new SettingsForm(workspacesContainer);
-                settingsForm.Show();
+                if (_currentSettingsForm != null && !_currentSettingsForm.IsDisposed && !_currentSettingsForm.IsDisposed)
+                {
+                    _currentSettingsForm.Activate();
+                }
+                else
+                {
+                    _currentSettingsForm = new SettingsForm(workspacesContainer);
+                    _currentSettingsForm.Show();
+                }
             };
             
             var openLogsAction = new DeskBandMenuAction("Open logs folder");

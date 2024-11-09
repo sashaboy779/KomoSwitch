@@ -32,8 +32,6 @@ namespace KomoSwitch.Controls
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.colorSettingsControl9 = new KomoSwitch.Controls.ColorSettingsControl();
@@ -51,6 +49,7 @@ namespace KomoSwitch.Controls
             this.colorSettingsControl2 = new KomoSwitch.Controls.ColorSettingsControl();
             this.colorSettingsControl1 = new KomoSwitch.Controls.ColorSettingsControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -59,7 +58,7 @@ namespace KomoSwitch.Controls
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this._appMinWidth = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -72,15 +71,13 @@ namespace KomoSwitch.Controls
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._appMinWidth)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.AutoScroll = true;
             this.panel1.AutoSize = true;
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.groupBox4);
             this.panel1.Controls.Add(this.groupBox3);
@@ -92,27 +89,9 @@ namespace KomoSwitch.Controls
             this.panel1.Size = new System.Drawing.Size(1209, 888);
             this.panel1.TabIndex = 0;
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(819, 1879);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(259, 62);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Discard changes";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(610, 1879);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(162, 62);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Save";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(25, 1861);
+            this.button2.Location = new System.Drawing.Point(14, 1852);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(162, 62);
@@ -245,6 +224,7 @@ namespace KomoSwitch.Controls
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.checkBox2);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.checkBox1);
@@ -253,7 +233,7 @@ namespace KomoSwitch.Controls
             this.groupBox1.Controls.Add(this.numericUpDown2);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.numericUpDown1);
+            this.groupBox1.Controls.Add(this._appMinWidth);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label2);
@@ -261,15 +241,25 @@ namespace KomoSwitch.Controls
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1131, 549);
+            this.groupBox1.Size = new System.Drawing.Size(1131, 587);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General";
             // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label8.Location = new System.Drawing.Point(22, 233);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(589, 32);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Restart is required for changes to take affect";
+            // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(963, 462);
+            this.checkBox2.Location = new System.Drawing.Point(963, 506);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(34, 33);
             this.checkBox2.TabIndex = 13;
@@ -278,7 +268,7 @@ namespace KomoSwitch.Controls
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(22, 462);
+            this.label7.Location = new System.Drawing.Point(22, 506);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(528, 32);
             this.label7.TabIndex = 12;
@@ -287,7 +277,7 @@ namespace KomoSwitch.Controls
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(963, 401);
+            this.checkBox1.Location = new System.Drawing.Point(963, 445);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(34, 33);
             this.checkBox1.TabIndex = 11;
@@ -296,7 +286,7 @@ namespace KomoSwitch.Controls
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 401);
+            this.label6.Location = new System.Drawing.Point(22, 445);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(314, 32);
             this.label6.TabIndex = 10;
@@ -304,14 +294,14 @@ namespace KomoSwitch.Controls
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(865, 318);
+            this.numericUpDown3.Location = new System.Drawing.Point(865, 362);
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(200, 38);
             this.numericUpDown3.TabIndex = 9;
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(865, 258);
+            this.numericUpDown2.Location = new System.Drawing.Point(865, 302);
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(200, 38);
             this.numericUpDown2.TabIndex = 8;
@@ -319,7 +309,7 @@ namespace KomoSwitch.Controls
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(22, 320);
+            this.label5.Location = new System.Drawing.Point(22, 364);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(211, 32);
             this.label5.TabIndex = 7;
@@ -328,18 +318,19 @@ namespace KomoSwitch.Controls
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 258);
+            this.label4.Location = new System.Drawing.Point(22, 302);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(230, 32);
             this.label4.TabIndex = 6;
             this.label4.Text = "Workspace width";
             // 
-            // numericUpDown1
+            // _appMinWidth
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(865, 192);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(200, 38);
-            this.numericUpDown1.TabIndex = 5;
+            this._appMinWidth.Location = new System.Drawing.Point(865, 206);
+            this._appMinWidth.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
+            this._appMinWidth.Name = "_appMinWidth";
+            this._appMinWidth.Size = new System.Drawing.Size(200, 38);
+            this._appMinWidth.TabIndex = 5;
             // 
             // label3
             // 
@@ -400,6 +391,7 @@ namespace KomoSwitch.Controls
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 30);
             this.ShowIcon = false;
             this.Text = "KomoSwitch Settings";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsForm_FormClosing);
             this.panel1.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -408,10 +400,12 @@ namespace KomoSwitch.Controls
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._appMinWidth)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label label8;
 
         private System.Windows.Forms.Panel panel1;
 
@@ -424,7 +418,7 @@ namespace KomoSwitch.Controls
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown _appMinWidth;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
@@ -447,8 +441,6 @@ namespace KomoSwitch.Controls
         private ColorSettingsControl colorSettingsControl10;
         private ColorSettingsControl colorSettingsControl11;
         private ColorSettingsControl colorSettingsControl12;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
     }
 }

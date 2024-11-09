@@ -22,6 +22,9 @@ namespace KomoSwitch.Controls
             
             _statusLineLocationList.SelectedIndex = (int)Settings.Instance.StatusLineLocation - 1;
             _statusLineLocationList.SelectedIndexChanged += StatusLineLocationList_SelectedIndexChanged;
+
+            _appMinWidth.Value = Settings.Instance.AppMinWidth;
+            _appMinWidth.ValueChanged += AppMinWidth_ValueChanged;
             
             _container = container;
             _fontDialog = new FontDialog();
@@ -160,8 +163,9 @@ namespace KomoSwitch.Controls
 
         private void StatusLineLocationList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var comboBox = (ComboBox) sender;
+            var comboBox = (ComboBox)sender;
             var selectedLocation = (EStatusLineLocation)comboBox.SelectedIndex + 1;
+            Settings.Instance.StatusLineLocation = selectedLocation;
             IterateWorkspaceControls(workspace => workspace.SetStatusLineLocation(selectedLocation));
         }
 
@@ -174,6 +178,19 @@ namespace KomoSwitch.Controls
                     action.Invoke(workspaceControl);
                 }
             }
+            
+            _container.Refresh();
+        }
+
+        private void AppMinWidth_ValueChanged(object sender, EventArgs e)
+        {
+            var numericUpDown = (NumericUpDown)sender;
+            Settings.Instance.AppMinWidth = Convert.ToInt32(numericUpDown.Value);
+        }
+
+        private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Settings.Save();
         }
     }
 }
