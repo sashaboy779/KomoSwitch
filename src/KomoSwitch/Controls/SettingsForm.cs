@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using KomoSwitch.Models.Settings;
+using KomoSwitch.Services;
 
 namespace KomoSwitch.Controls
 {
@@ -11,10 +13,18 @@ namespace KomoSwitch.Controls
         public SettingsForm(WorkspacesContainer container)
         {
             InitializeComponent();
+
+            var locations = Enum.GetNames(typeof(EStatusLineLocation));
+            foreach (var location in locations)
+            {
+                _statusLineLocationList.Items.Add(location);
+            }
+            
+            _statusLineLocationList.SelectedIndex = (int)Settings.Instance.StatusLineLocation - 1;
+            _statusLineLocationList.SelectedIndexChanged += StatusLineLocationList_SelectedIndexChanged;
+            
             _container = container;
             _fontDialog = new FontDialog();
-
-            var workspace = _container.Controls[0] as WorkspaceControl;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -148,9 +158,22 @@ namespace KomoSwitch.Controls
             dialog.FullOpen = true;
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void StatusLineLocationList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            var comboBox = (ComboBox) sender;
+            var selectedLocation = (EStatusLineLocation)comboBox.SelectedIndex + 1;
+            IterateWorkspaceControls(workspace => workspace.SetStatusLineLocation(selectedLocation));
+        }
+
+        private void IterateWorkspaceControls(Action<WorkspaceControl> action)
+        {
+            foreach (Control control in _container.Controls)
+            {
+                if (control is WorkspaceControl workspaceControl)
+                {
+                    action.Invoke(workspaceControl);
+                }
+            }
         }
     }
 }

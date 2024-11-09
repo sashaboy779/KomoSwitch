@@ -31,73 +31,73 @@ namespace KomoSwitch.Controls
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnl_background = new System.Windows.Forms.Panel();
-            this.pnl_line = new System.Windows.Forms.Panel();
-            this.lbl_name = new System.Windows.Forms.Label();
-            this.pnl_background.SuspendLayout();
+            this.workspaceBackground = new System.Windows.Forms.Panel();
+            this._statusLine = new System.Windows.Forms.Panel();
+            this._workspaceName = new System.Windows.Forms.Label();
+            this.workspaceBackground.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnl_background
+            // workspaceBackground
             // 
-            this.pnl_background.AutoSize = true;
-            this.pnl_background.BackColor = System.Drawing.Color.Transparent;
-            this.pnl_background.Controls.Add(this.pnl_line);
-            this.pnl_background.Controls.Add(this.lbl_name);
-            this.pnl_background.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnl_background.Location = new System.Drawing.Point(0, 0);
-            this.pnl_background.Margin = new System.Windows.Forms.Padding(0);
-            this.pnl_background.Name = "pnl_background";
-            this.pnl_background.Size = new System.Drawing.Size(53, 100);
-            this.pnl_background.TabIndex = 0;
+            this.workspaceBackground.AutoSize = true;
+            this.workspaceBackground.BackColor = System.Drawing.Color.Transparent;
+            this.workspaceBackground.Controls.Add(this._statusLine);
+            this.workspaceBackground.Controls.Add(this._workspaceName);
+            this.workspaceBackground.Dock = System.Windows.Forms.DockStyle.Left;
+            this.workspaceBackground.Location = new System.Drawing.Point(0, 0);
+            this.workspaceBackground.Margin = new System.Windows.Forms.Padding(0);
+            this.workspaceBackground.Name = "workspaceBackground";
+            this.workspaceBackground.Size = new System.Drawing.Size(53, 100);
+            this.workspaceBackground.TabIndex = 0;
             // 
-            // pnl_line
+            // _statusLine
             // 
-            this.pnl_line.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.pnl_line.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnl_line.Location = new System.Drawing.Point(0, 0);
-            this.pnl_line.Name = "pnl_line";
-            this.pnl_line.Size = new System.Drawing.Size(53, 6);
-            this.pnl_line.TabIndex = 1;
+            this._statusLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this._statusLine.Dock = System.Windows.Forms.DockStyle.Top;
+            this._statusLine.Location = new System.Drawing.Point(0, 0);
+            this._statusLine.Name = "_statusLine";
+            this._statusLine.Size = new System.Drawing.Size(53, 6);
+            this._statusLine.TabIndex = 1;
             // 
-            // lbl_name
+            // _workspaceName
             // 
-            this.lbl_name.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbl_name.AutoSize = true;
-            this.lbl_name.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_name.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.lbl_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_name.ForeColor = System.Drawing.Color.White;
-            this.lbl_name.Location = new System.Drawing.Point(0, 0);
-            this.lbl_name.MinimumSize = new System.Drawing.Size(50, 100);
-            this.lbl_name.Name = "lbl_name";
-            this.lbl_name.Size = new System.Drawing.Size(50, 100);
-            this.lbl_name.TabIndex = 1;
-            this.lbl_name.Text = "1";
-            this.lbl_name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_name.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lbl_name_MouseClick);
-            this.lbl_name.MouseEnter += new System.EventHandler(this.lbl_name_MouseEnter);
-            this.lbl_name.MouseLeave += new System.EventHandler(this.lbl_name_MouseLeave);
+            this._workspaceName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this._workspaceName.AutoSize = true;
+            this._workspaceName.BackColor = System.Drawing.Color.Transparent;
+            this._workspaceName.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this._workspaceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._workspaceName.ForeColor = System.Drawing.Color.White;
+            this._workspaceName.Location = new System.Drawing.Point(0, 0);
+            this._workspaceName.MinimumSize = new System.Drawing.Size(50, 100);
+            this._workspaceName.Name = "_workspaceName";
+            this._workspaceName.Size = new System.Drawing.Size(50, 100);
+            this._workspaceName.TabIndex = 1;
+            this._workspaceName.Text = "1";
+            this._workspaceName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._workspaceName.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lbl_name_MouseClick);
+            this._workspaceName.MouseEnter += new System.EventHandler(this.lbl_name_MouseEnter);
+            this._workspaceName.MouseLeave += new System.EventHandler(this.lbl_name_MouseLeave);
             // 
             // WorkspaceControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.pnl_background);
+            this.Controls.Add(this.workspaceBackground);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "WorkspaceControl";
             this.Size = new System.Drawing.Size(731, 100);
-            this.pnl_background.ResumeLayout(false);
-            this.pnl_background.PerformLayout();
+            this.workspaceBackground.ResumeLayout(false);
+            this.workspaceBackground.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.Label lbl_name;
+        private System.Windows.Forms.Label _workspaceName;
 
-        private System.Windows.Forms.Panel pnl_background;
+        private System.Windows.Forms.Panel workspaceBackground;
 
         #endregion
 
-        private System.Windows.Forms.Panel pnl_line;
+        private System.Windows.Forms.Panel _statusLine;
     }
 }

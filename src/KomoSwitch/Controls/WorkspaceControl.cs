@@ -25,8 +25,8 @@ namespace KomoSwitch.Controls
         /// </summary>
         public bool IsFocused { get; private set; }
 
-        public Panel StatusLine => pnl_line;
-        public Label WorkspaceNameText => lbl_name;
+        public Panel StatusLine => _statusLine;
+        public Label WorkspaceNameText => _workspaceName;
         
         private readonly Color _backgroundDefaultColor = Color.Transparent;
         private readonly Color _backgroundHoverColor = Color.FromArgb(25, 128, 128, 128);
@@ -45,10 +45,9 @@ namespace KomoSwitch.Controls
             InitializeComponent();
             
             WorkspaceIndex = workspace.Index;
-            lbl_name.Text = workspace.Name;
-            pnl_line.Dock = Settings.Instance.StatusLineLocation == EStatusLineLocation.Bottom
-                ? DockStyle.Bottom
-                : DockStyle.Top;
+            _workspaceName.Text = workspace.Name;
+            
+            SetStatusLineLocation(Settings.Instance.StatusLineLocation);
 
             if (workspace.IsFocused)
             {
@@ -65,7 +64,7 @@ namespace KomoSwitch.Controls
             if (_blocked)
                 return;
 
-            pnl_background.BackColor = IsControlFocused()
+            workspaceBackground.BackColor = IsControlFocused()
                 ? _backgroundFocusedColor
                 : _backgroundDefaultColor;
         }
@@ -75,7 +74,7 @@ namespace KomoSwitch.Controls
             if (_blocked)
                 return;
 
-            pnl_background.BackColor = IsControlFocused()
+            workspaceBackground.BackColor = IsControlFocused()
                 ? _backgroundHoverWhenFocusedColor
                 : _backgroundHoverColor;
         }
@@ -103,11 +102,11 @@ namespace KomoSwitch.Controls
             if (_blocked)
                 return;
 
-            lbl_name.ForeColor = shouldFocus
+            _workspaceName.ForeColor = shouldFocus
                 ? _labelFocusedColor
                 : _labelDefaultColor;
 
-            pnl_background.BackColor = shouldFocus
+            workspaceBackground.BackColor = shouldFocus
                 ? _backgroundHoverWhenFocusedColor
                 : _backgroundDefaultColor;
 
@@ -125,21 +124,21 @@ namespace KomoSwitch.Controls
             
             _blocked = true;
 
-            _toolTip.SetToolTip(lbl_name, "Connecting to komorebi...");
-            lbl_name.ForeColor = _waitingColor;
-            pnl_line.BackColor = _waitingColor;
-            pnl_background.BackColor = _backgroundDefaultColor;
+            _toolTip.SetToolTip(_workspaceName, "Connecting to komorebi...");
+            _workspaceName.ForeColor = _waitingColor;
+            _statusLine.BackColor = _waitingColor;
+            workspaceBackground.BackColor = _backgroundDefaultColor;
         }
         
         public void SetError()
         {
             _blocked = true;
             
-            _toolTip.SetToolTip(lbl_name, "Unable to connect to komorebi");
+            _toolTip.SetToolTip(_workspaceName, "Unable to connect to komorebi");
             
-            lbl_name.ForeColor = _errorColor;
-            pnl_line.BackColor = _errorColor;
-            pnl_background.BackColor = _backgroundDefaultColor;
+            _workspaceName.ForeColor = _errorColor;
+            _statusLine.BackColor = _errorColor;
+            workspaceBackground.BackColor = _backgroundDefaultColor;
         }
 
         public void SetInProgressLine(bool isInProgress)
@@ -151,14 +150,21 @@ namespace KomoSwitch.Controls
                 return;
             }
             
-            pnl_line.BackColor = isInProgress
+            _statusLine.BackColor = isInProgress
                 ? Color.WhiteSmoke
                 : _waitingColor;
         }
         
         private bool IsControlFocused()
         {
-            return lbl_name.ForeColor != _labelDefaultColor;
+            return _workspaceName.ForeColor != _labelDefaultColor;
+        }
+
+        public void SetStatusLineLocation(EStatusLineLocation location)
+        {
+            _statusLine.Dock = location == EStatusLineLocation.Bottom
+                ? DockStyle.Bottom
+                : DockStyle.Top;
         }
     }
 }

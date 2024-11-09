@@ -63,7 +63,7 @@ namespace KomoSwitch.Controls
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this._statusLineLocationList = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -257,7 +257,7 @@ namespace KomoSwitch.Controls
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this._statusLineLocationList);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 12);
             this.groupBox1.Name = "groupBox1";
@@ -280,7 +280,7 @@ namespace KomoSwitch.Controls
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(22, 462);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(527, 32);
+            this.label7.Size = new System.Drawing.Size(528, 32);
             this.label7.TabIndex = 12;
             this.label7.Text = "Sync primary colors with Windows theme";
             // 
@@ -298,7 +298,7 @@ namespace KomoSwitch.Controls
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(22, 401);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(313, 32);
+            this.label6.Size = new System.Drawing.Size(314, 32);
             this.label6.TabIndex = 10;
             this.label6.Text = "Hide empty workspaces";
             // 
@@ -321,7 +321,7 @@ namespace KomoSwitch.Controls
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(22, 320);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(210, 32);
+            this.label5.Size = new System.Drawing.Size(211, 32);
             this.label5.TabIndex = 7;
             this.label5.Text = "Workspace gap";
             // 
@@ -330,7 +330,7 @@ namespace KomoSwitch.Controls
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(22, 258);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(229, 32);
+            this.label4.Size = new System.Drawing.Size(230, 32);
             this.label4.TabIndex = 6;
             this.label4.Text = "Workspace width";
             // 
@@ -346,7 +346,7 @@ namespace KomoSwitch.Controls
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(22, 192);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(192, 32);
+            this.label3.Size = new System.Drawing.Size(193, 32);
             this.label3.TabIndex = 4;
             this.label3.Text = "App min width";
             // 
@@ -364,24 +364,25 @@ namespace KomoSwitch.Controls
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(22, 127);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 32);
+            this.label2.Size = new System.Drawing.Size(72, 32);
             this.label2.TabIndex = 2;
             this.label2.Text = "Font";
             // 
-            // comboBox1
+            // _statusLineLocationList
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(944, 58);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 39);
-            this.comboBox1.TabIndex = 1;
+            this._statusLineLocationList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._statusLineLocationList.FormattingEnabled = true;
+            this._statusLineLocationList.Location = new System.Drawing.Point(851, 58);
+            this._statusLineLocationList.Name = "_statusLineLocationList";
+            this._statusLineLocationList.Size = new System.Drawing.Size(214, 39);
+            this._statusLineLocationList.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(22, 65);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(255, 32);
+            this.label1.Size = new System.Drawing.Size(256, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "Status line location";
             // 
@@ -410,7 +411,6 @@ namespace KomoSwitch.Controls
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         private System.Windows.Forms.Panel panel1;
@@ -428,7 +428,7 @@ namespace KomoSwitch.Controls
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox _statusLineLocationList;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
         private ColorSettingsControl colorSettingsControl1;
