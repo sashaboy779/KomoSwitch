@@ -55,7 +55,7 @@ namespace KomoSwitch.Controls
             this.label7 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this._workspaceGap = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this._appMinWidth = new System.Windows.Forms.NumericUpDown();
@@ -70,7 +70,7 @@ namespace KomoSwitch.Controls
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._workspaceWidth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._workspaceGap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._appMinWidth)).BeginInit();
             this.SuspendLayout();
             // 
@@ -230,7 +230,7 @@ namespace KomoSwitch.Controls
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.numericUpDown3);
+            this.groupBox1.Controls.Add(this._workspaceGap);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this._appMinWidth);
@@ -300,12 +300,13 @@ namespace KomoSwitch.Controls
             this.label6.TabIndex = 10;
             this.label6.Text = "Hide empty workspaces";
             // 
-            // numericUpDown3
+            // _workspaceGap
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(865, 362);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(200, 38);
-            this.numericUpDown3.TabIndex = 9;
+            this._workspaceGap.Location = new System.Drawing.Point(865, 362);
+            this._workspaceGap.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
+            this._workspaceGap.Name = "_workspaceGap";
+            this._workspaceGap.Size = new System.Drawing.Size(200, 38);
+            this._workspaceGap.TabIndex = 9;
             // 
             // label5
             // 
@@ -401,7 +402,7 @@ namespace KomoSwitch.Controls
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._workspaceWidth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._workspaceGap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._appMinWidth)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -418,7 +419,7 @@ namespace KomoSwitch.Controls
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown _workspaceGap;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown _appMinWidth;

@@ -47,6 +47,7 @@ namespace KomoSwitch.Controls
             SetStatusLineLocation(Settings.Instance.StatusLineLocation);
             SetFont(Settings.Instance.Font);
             SetWorkspaceWidth(Settings.Instance.WorkspaceWidth);
+            SetWorkspaceGap(Settings.Instance.WorkspaceGap);
 
             if (workspace.IsFocused)
             {
@@ -181,6 +182,11 @@ namespace KomoSwitch.Controls
         public void SetWorkspaceWidth(int width)
         {
             _workspaceName.Width = width;
+        }
+
+        public void SetWorkspaceGap(int gap)
+        {
+            Padding = new Padding(gap, 0, gap, 0);
         }
     }
 }

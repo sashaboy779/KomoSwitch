@@ -28,6 +28,9 @@ namespace KomoSwitch.Controls
 
             _workspaceWidth.Value = Settings.Instance.WorkspaceWidth;
             _workspaceWidth.ValueChanged += WorkspaceWidth_ValueChanged;
+
+            _workspaceGap.Value = Settings.Instance.WorkspaceGap;
+            _workspaceGap.ValueChanged += WorkspaceGap_ValueChanged;
             
             _container = container;
         }
@@ -52,6 +55,14 @@ namespace KomoSwitch.Controls
             var width = Convert.ToInt32(numericUpDown.Value);
             Settings.Instance.WorkspaceWidth = width;
             IterateWorkspaceControls(workspace => workspace.SetWorkspaceWidth(width));
+        }
+
+        private void WorkspaceGap_ValueChanged(object sender, EventArgs e)
+        {
+            var numericUpDown = (NumericUpDown)sender;
+            var gap = Convert.ToInt32(numericUpDown.Value);
+            Settings.Instance.WorkspaceGap = gap;
+            IterateWorkspaceControls(workspace => workspace.SetWorkspaceGap(gap));
         }
 
         private void SelectFontButton_Click(object sender, EventArgs e)

@@ -15,7 +15,9 @@ namespace KomoSwitch.Services
         
         public string Font { get; set; } = "Microsoft Sans Serif, 9pt";
         
-        public int WorkspaceWidth { get; set; } = 100;
+        public int WorkspaceWidth { get; set; } = 60;
+        
+        public int WorkspaceGap { get; set; } = 10;
         
         public static Settings Instance
         {
