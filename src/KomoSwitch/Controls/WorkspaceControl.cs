@@ -25,9 +25,6 @@ namespace KomoSwitch.Controls
         /// </summary>
         public bool IsFocused { get; private set; }
 
-        public Panel StatusLine => _statusLine;
-        public Label WorkspaceNameText => _workspaceName;
-        
         private readonly Color _backgroundDefaultColor = Color.Transparent;
         private readonly Color _backgroundHoverColor = Color.FromArgb(25, 128, 128, 128);
         private readonly Color _backgroundFocusedColor = Color.FromArgb(50, 128, 128, 128);
@@ -49,6 +46,7 @@ namespace KomoSwitch.Controls
             
             SetStatusLineLocation(Settings.Instance.StatusLineLocation);
             SetFont(Settings.Instance.Font);
+            SetWorkspaceWidth(Settings.Instance.WorkspaceWidth);
 
             if (workspace.IsFocused)
             {
@@ -65,7 +63,7 @@ namespace KomoSwitch.Controls
             if (_blocked)
                 return;
 
-            workspaceBackground.BackColor = IsControlFocused()
+            _workspaceBackground.BackColor = IsControlFocused()
                 ? _backgroundFocusedColor
                 : _backgroundDefaultColor;
         }
@@ -75,7 +73,7 @@ namespace KomoSwitch.Controls
             if (_blocked)
                 return;
 
-            workspaceBackground.BackColor = IsControlFocused()
+            _workspaceBackground.BackColor = IsControlFocused()
                 ? _backgroundHoverWhenFocusedColor
                 : _backgroundHoverColor;
         }
@@ -107,7 +105,7 @@ namespace KomoSwitch.Controls
                 ? _labelFocusedColor
                 : _labelDefaultColor;
 
-            workspaceBackground.BackColor = shouldFocus
+            _workspaceBackground.BackColor = shouldFocus
                 ? _backgroundHoverWhenFocusedColor
                 : _backgroundDefaultColor;
 
@@ -128,7 +126,7 @@ namespace KomoSwitch.Controls
             _toolTip.SetToolTip(_workspaceName, "Connecting to komorebi...");
             _workspaceName.ForeColor = _waitingColor;
             _statusLine.BackColor = _waitingColor;
-            workspaceBackground.BackColor = _backgroundDefaultColor;
+            _workspaceBackground.BackColor = _backgroundDefaultColor;
         }
         
         public void SetError()
@@ -139,7 +137,7 @@ namespace KomoSwitch.Controls
             
             _workspaceName.ForeColor = _errorColor;
             _statusLine.BackColor = _errorColor;
-            workspaceBackground.BackColor = _backgroundDefaultColor;
+            _workspaceBackground.BackColor = _backgroundDefaultColor;
         }
 
         public void SetInProgressLine(bool isInProgress)
@@ -178,6 +176,11 @@ namespace KomoSwitch.Controls
             var fontObject = new FontConverter().ConvertFromInvariantString(fontRaw);
             if (fontObject is Font font) 
                 _workspaceName.Font = font;
+        }
+
+        public void SetWorkspaceWidth(int width)
+        {
+            _workspaceName.Width = width;
         }
     }
 }

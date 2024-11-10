@@ -25,6 +25,9 @@ namespace KomoSwitch.Controls
 
             _appMinWidth.Value = Settings.Instance.AppMinWidth;
             _appMinWidth.ValueChanged += AppMinWidth_ValueChanged;
+
+            _workspaceWidth.Value = Settings.Instance.WorkspaceWidth;
+            _workspaceWidth.ValueChanged += WorkspaceWidth_ValueChanged;
             
             _container = container;
         }
@@ -43,22 +46,12 @@ namespace KomoSwitch.Controls
             Settings.Instance.AppMinWidth = Convert.ToInt32(numericUpDown.Value);
         }
 
-        private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void WorkspaceWidth_ValueChanged(object sender, EventArgs e)
         {
-            Settings.Save();
-        }
-
-        private void IterateWorkspaceControls(Action<WorkspaceControl> action)
-        {
-            foreach (Control control in _container.Controls)
-            {
-                if (control is WorkspaceControl workspaceControl)
-                {
-                    action.Invoke(workspaceControl);
-                }
-            }
-            
-            _container.Refresh();
+            var numericUpDown = (NumericUpDown)sender;
+            var width = Convert.ToInt32(numericUpDown.Value);
+            Settings.Instance.WorkspaceWidth = width;
+            IterateWorkspaceControls(workspace => workspace.SetWorkspaceWidth(width));
         }
 
         private void SelectFontButton_Click(object sender, EventArgs e)
@@ -90,6 +83,24 @@ namespace KomoSwitch.Controls
         {
             var dialog = (FontDialog)sender;
             IterateWorkspaceControls(workspace => workspace.SetFont(dialog.Font));
+        }
+
+        private void IterateWorkspaceControls(Action<WorkspaceControl> action)
+        {
+            foreach (Control control in _container.Controls)
+            {
+                if (control is WorkspaceControl workspaceControl)
+                {
+                    action.Invoke(workspaceControl);
+                }
+            }
+            
+            _container.Refresh();
+        }
+
+        private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Settings.Save();
         }
     }
 }
