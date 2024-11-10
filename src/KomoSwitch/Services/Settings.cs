@@ -13,6 +13,8 @@ namespace KomoSwitch.Services
         
         public int AppMinWidth { get; set; } = 200;
         
+        public string Font { get; set; } = "Microsoft Sans Serif, 9pt";
+        
         public static Settings Instance
         {
             get

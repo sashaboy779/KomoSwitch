@@ -1,7 +1,6 @@
 ﻿{
   "statusLineLocation": "bottom",
-  "fontFamily": "Microsoft Sans Serif",
-  "fontSize": 9,
+  "font": "Microsoft Sans Serif, 9pt",
   "appMinWidth": 200,
   "workspaceWidth": 100,
   "workspaceGap": 10,

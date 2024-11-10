@@ -48,6 +48,7 @@ namespace KomoSwitch.Controls
             _workspaceName.Text = workspace.Name;
             
             SetStatusLineLocation(Settings.Instance.StatusLineLocation);
+            SetFont(Settings.Instance.Font);
 
             if (workspace.IsFocused)
             {
@@ -165,6 +166,18 @@ namespace KomoSwitch.Controls
             _statusLine.Dock = location == EStatusLineLocation.Bottom
                 ? DockStyle.Bottom
                 : DockStyle.Top;
+        }
+
+        public void SetFont(Font font)
+        {
+            _workspaceName.Font = font;
+        }
+        
+        public void SetFont(string fontRaw)
+        {
+            var fontObject = new FontConverter().ConvertFromInvariantString(fontRaw);
+            if (fontObject is Font font) 
+                _workspaceName.Font = font;
         }
     }
 }

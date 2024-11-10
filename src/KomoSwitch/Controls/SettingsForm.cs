@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using KomoSwitch.Models.Settings;
 using KomoSwitch.Services;
@@ -58,6 +59,37 @@ namespace KomoSwitch.Controls
             }
             
             _container.Refresh();
+        }
+
+        private void SelectFontButton_Click(object sender, EventArgs e)
+        {
+            var converter = new FontConverter();
+            var dialog = new FontDialog();
+            dialog.ShowEffects = false;
+            dialog.ShowApply = true;
+            dialog.AllowScriptChange = false;
+            dialog.Font = converter.ConvertFromInvariantString(Settings.Instance.Font) as Font;
+            dialog.Apply += FontDialog_OnApply;
+            
+            var result = dialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                // ReSharper disable once AssignNullToNotNullAttribute
+                var fontRaw = converter.ConvertToInvariantString(dialog.Font);
+                Settings.Instance.Font = fontRaw;
+                Settings.Save();
+            }
+            
+            IterateWorkspaceControls(workspace => workspace.SetFont(Settings.Instance.Font));
+
+            dialog.Apply -= FontDialog_OnApply;
+        }
+
+        private void FontDialog_OnApply(object sender, EventArgs e)
+        {
+            var dialog = (FontDialog)sender;
+            IterateWorkspaceControls(workspace => workspace.SetFont(dialog.Font));
         }
     }
 }
