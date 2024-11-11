@@ -1,0 +1,27 @@
+﻿{
+  "statusLineLocation": "bottom",
+  "font": "Microsoft Sans Serif, 9pt",
+  "appMinWidth": 200,
+  "workspaceWidth": 100,
+  "workspaceGap": 10,
+  "hideEmptyWorkspaces": false,
+  "syncWithWindowsTheme": true,
+  "workspaceColors": {
+    "default": "#FFFFFF",
+    "active": "#0078d7",
+    "waiting": "#696969",
+    "error": "#B93139"
+  },
+  "workspaceBackgroundColors": {
+    "default": "#00000000",
+    "active": "#32808080",
+    "hover": "#19808080",
+    "hoverWhenActive": "#4B808080"
+  },
+  "statusLineColors": {
+    "active": "#0078d7",
+    "activeWhenWaiting": "#FFF5F5F5",
+    "waiting": "#696969",
+    "error": "#B93139"
+  }
+}

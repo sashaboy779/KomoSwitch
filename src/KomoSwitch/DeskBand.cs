@@ -19,14 +19,19 @@ namespace KomoSwitch
     {
         private static Control _control;
         private readonly EventListener _listener;
+        private SettingsForm _currentSettingsForm;
 
         public DeskBand()
         {
             InitializeLogger();
-            InitializeDeskBand();
+            InitializeSettings();
+            InitializeColorManager();
 
             _listener = new EventListener();
-            _control = new WorkspacesContainer(_listener, new Storage());
+            var workspacesContainer = new WorkspacesContainer(_listener, new Storage());
+            _control = workspacesContainer;
+            
+            InitializeDeskBand(workspacesContainer);
             
             _listener.Start();
         }
@@ -50,15 +55,55 @@ namespace KomoSwitch
             Log.Information("KomoSwitch is starting");
         }
 
-        private void InitializeDeskBand()
+        private void InitializeSettings()
+        {
+            try
+            {
+                Settings.Load();
+
+            }
+            catch (Exception e)
+            {
+                Log.Fatal(e, "Unable to initialize settings: {Message}", e.Message);
+                
+                MessageBox.Show($"Unable to run KomoSwitch because of an error in settings.json:{Environment.NewLine}" +
+                    e.Message, 
+                    "KomoSwitch", 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
+                
+                throw;
+            }
+        }
+
+        private void InitializeColorManager()
+        {
+            ColorManager.Initialize();
+        }
+
+        private void InitializeDeskBand(WorkspacesContainer workspacesContainer)
         {
             var logsFolder = PathManager.LogsFolder;
             
-            var openLogsAction = new DeskBandMenuAction("Open logs folder");
+            var settingsAction = new DeskBandMenuAction("KomoSwitch Settings");
+            settingsAction.Clicked += (sender, args) =>
+            {
+                if (_currentSettingsForm != null && !_currentSettingsForm.IsDisposed && !_currentSettingsForm.IsDisposed)
+                {
+                    _currentSettingsForm.Activate();
+                }
+                else
+                {
+                    _currentSettingsForm = new SettingsForm(workspacesContainer);
+                    _currentSettingsForm.Show();
+                }
+            };
+            
+            var openLogsAction = new DeskBandMenuAction("Open Logs");
             openLogsAction.Clicked += (sender, args) => CommandPromptWrapper.OpenFolder(logsFolder);
             
-            Options.ContextMenuItems = new List<DeskBandMenuItem> { openLogsAction };
-            Options.MinHorizontalSize = new Size(100, 30);
+            Options.ContextMenuItems = new List<DeskBandMenuItem> { settingsAction, openLogsAction };
+            Options.MinHorizontalSize = new Size(Settings.Instance.AppMinWidth, 30);
         }
 
         protected override Control Control => _control;

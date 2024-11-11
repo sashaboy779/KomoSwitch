@@ -86,6 +86,18 @@
   <ItemGroup>
     <Compile Include="CommandPrompt\CommandPromptWrapper.cs" />
     <Compile Include="CommandPrompt\CommandResult.cs" />
+    <Compile Include="Controls\ColorSettingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ColorSettingsControl.Designer.cs">
+      <DependentUpon>ColorSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\WorkspaceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -108,15 +120,25 @@
     <Compile Include="Models\Notifications\State.cs" />
     <Compile Include="Models\Notifications\Workspace.cs" />
     <Compile Include="Models\Notifications\WorkspaceElement.cs" />
+    <Compile Include="Models\Settings\EColorSetting.cs" />
+    <Compile Include="Models\Settings\EStatusLineLocation.cs" />
     <Compile Include="Models\Workspace.cs" />
     <Compile Include="DeskBand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ColorManager.cs" />
     <Compile Include="Services\EventListener.cs" />
     <Compile Include="Services\PathManager.cs" />
+    <Compile Include="Services\Settings.cs" />
     <Compile Include="Services\Storage.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\ColorSettingsControl.resx">
+      <DependentUpon>ColorSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\WorkspaceControl.resx">
       <DependentUpon>WorkspaceControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,6 +147,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Tools\settings.json" />
     <Content Include="Tools\install-deskband.bat" />
     <Content Include="Tools\uninstall-deskband.bat" />
   </ItemGroup>

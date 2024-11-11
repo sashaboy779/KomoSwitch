@@ -94,7 +94,6 @@ namespace KomoSwitch.Controls
                 control.AutoSize = true;
                 control.Dock = DockStyle.Left;
                 control.Margin = new Padding(0);
-                control.Padding = new Padding(0, 0, 10, 0);
 
                 if (!isPlaceholder)
                 {

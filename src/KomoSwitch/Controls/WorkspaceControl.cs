@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using KomoSwitch.Models;
 using KomoSwitch.Models.EventArgs;
+using KomoSwitch.Models.Settings;
+using KomoSwitch.Services;
 
 namespace KomoSwitch.Controls
 {
@@ -22,15 +24,6 @@ namespace KomoSwitch.Controls
         /// Indicates if the control is focused
         /// </summary>
         public bool IsFocused { get; private set; }
-        
-        private readonly Color _backgroundDefaultColor = Color.Transparent;
-        private readonly Color _backgroundHoverColor = Color.FromArgb(25, Color.Gray);
-        private readonly Color _backgroundFocusedColor = Color.FromArgb(50, Color.Gray);
-        private readonly Color _backgroundHoverWhenFocusedColor = Color.FromArgb(75, Color.Gray);
-        private readonly Color _labelDefaultColor = Color.White;
-        private readonly Color _labelFocusedColor = Color.FromArgb(151, 233, 239);
-        private readonly Color _waitingColor = Color.DimGray;
-        private readonly Color _errorColor = Color.FromArgb(185,49,57);
 
         private readonly ToolTip _toolTip;
         private bool _blocked;
@@ -40,7 +33,14 @@ namespace KomoSwitch.Controls
             InitializeComponent();
             
             WorkspaceIndex = workspace.Index;
-            lbl_name.Text = workspace.Name;
+            _workspaceName.Text = workspace.Name;
+            _workspaceBackground.BackColor = ColorManager.WorkspaceBackground.Default;
+            
+            SetAccentColors();
+            SetStatusLineLocation(Settings.Instance.StatusLineLocation);
+            SetFont(Settings.Instance.Font);
+            SetWorkspaceWidth(Settings.Instance.WorkspaceWidth);
+            SetWorkspaceGap(Settings.Instance.WorkspaceGap);
 
             if (workspace.IsFocused)
             {
@@ -57,9 +57,9 @@ namespace KomoSwitch.Controls
             if (_blocked)
                 return;
 
-            pnl_background.BackColor = IsControlFocused()
-                ? _backgroundFocusedColor
-                : _backgroundDefaultColor;
+            _workspaceBackground.BackColor = IsFocused
+                ? ColorManager.WorkspaceBackground.Active
+                : ColorManager.WorkspaceBackground.Default;
         }
 
         private void lbl_name_MouseEnter(object sender, EventArgs e)
@@ -67,9 +67,9 @@ namespace KomoSwitch.Controls
             if (_blocked)
                 return;
 
-            pnl_background.BackColor = IsControlFocused()
-                ? _backgroundHoverWhenFocusedColor
-                : _backgroundHoverColor;
+            _workspaceBackground.BackColor = IsFocused
+                ? ColorManager.WorkspaceBackground.HoverWhenActive
+                : ColorManager.WorkspaceBackground.Hover;
         }
 
         private void lbl_name_MouseClick(object sender, MouseEventArgs e)
@@ -80,9 +80,8 @@ namespace KomoSwitch.Controls
             if (e.Button != MouseButtons.Left)
                 return;
 
-            var isFocused = IsControlFocused();
             
-            if (isFocused)
+            if (IsFocused)
                 return;
             
             SetFocus(true);
@@ -95,13 +94,13 @@ namespace KomoSwitch.Controls
             if (_blocked)
                 return;
 
-            lbl_name.ForeColor = shouldFocus
-                ? _labelFocusedColor
-                : _labelDefaultColor;
+            _workspaceName.ForeColor = shouldFocus
+                ? ColorManager.Workspace.Active
+                : ColorManager.Workspace.Default;
 
-            pnl_background.BackColor = shouldFocus
-                ? _backgroundHoverWhenFocusedColor
-                : _backgroundDefaultColor;
+            _workspaceBackground.BackColor = shouldFocus
+                ? ColorManager.WorkspaceBackground.HoverWhenActive
+                : ColorManager.WorkspaceBackground.Default;
 
             IsFocused = shouldFocus;
         }
@@ -117,21 +116,21 @@ namespace KomoSwitch.Controls
             
             _blocked = true;
 
-            _toolTip.SetToolTip(lbl_name, "Connecting to komorebi...");
-            lbl_name.ForeColor = _waitingColor;
-            pnl_line.BackColor = _waitingColor;
-            pnl_background.BackColor = _backgroundDefaultColor;
+            _toolTip.SetToolTip(_workspaceName, "Connecting to komorebi...");
+            _workspaceName.ForeColor = ColorManager.Workspace.Waiting;
+            _statusLine.BackColor = ColorManager.StatusLine.Waiting;
+            _workspaceBackground.BackColor = ColorManager.WorkspaceBackground.Default;
         }
         
         public void SetError()
         {
             _blocked = true;
             
-            _toolTip.SetToolTip(lbl_name, "Unable to connect to komorebi");
+            _toolTip.SetToolTip(_workspaceName, "Unable to connect to komorebi");
             
-            lbl_name.ForeColor = _errorColor;
-            pnl_line.BackColor = _errorColor;
-            pnl_background.BackColor = _backgroundDefaultColor;
+            _workspaceName.ForeColor = ColorManager.Workspace.Error;
+            _statusLine.BackColor = ColorManager.StatusLine.Error;
+            _workspaceBackground.BackColor = ColorManager.WorkspaceBackground.Default;
         }
 
         public void SetInProgressLine(bool isInProgress)
@@ -143,14 +142,56 @@ namespace KomoSwitch.Controls
                 return;
             }
             
-            pnl_line.BackColor = isInProgress
-                ? Color.WhiteSmoke
-                : _waitingColor;
+            _statusLine.BackColor = isInProgress
+                ? ColorManager.StatusLine.ActiveWhenWaiting
+                : ColorManager.StatusLine.Waiting;
+        }
+
+        public void SetStatusLineLocation(EStatusLineLocation location)
+        {
+            _statusLine.Dock = location == EStatusLineLocation.Bottom
+                ? DockStyle.Bottom
+                : DockStyle.Top;
+        }
+
+        public void SetFont(Font font)
+        {
+            _workspaceName.Font = font;
         }
         
-        private bool IsControlFocused()
+        public void SetFont(string fontRaw)
         {
-            return lbl_name.ForeColor != _labelDefaultColor;
+            var fontObject = new FontConverter().ConvertFromInvariantString(fontRaw);
+            if (fontObject is Font font) 
+                _workspaceName.Font = font;
+        }
+
+        public void SetWorkspaceWidth(int width)
+        {
+            _workspaceName.Width = width;
+        }
+
+        public void SetWorkspaceGap(int gap)
+        {
+            Padding = new Padding(gap, 0, gap, 0);
+        }
+
+        public void SetAccentColors()
+        {
+            _statusLine.BackColor = ColorManager.StatusLine.Active;
+            
+            _workspaceName.ForeColor = IsFocused 
+                ? ColorManager.Workspace.Active
+                : ColorManager.Workspace.Default;
+        }
+
+        public void RefreshColors()
+        {
+            SetAccentColors();
+            
+            _workspaceBackground.BackColor = IsFocused
+                ? ColorManager.WorkspaceBackground.Active
+                : ColorManager.WorkspaceBackground.Default;
         }
     }
 }
