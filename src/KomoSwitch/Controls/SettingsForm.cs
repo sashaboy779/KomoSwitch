@@ -31,6 +31,9 @@ namespace KomoSwitch.Controls
 
             _workspaceGap.Value = Settings.Instance.WorkspaceGap;
             _workspaceGap.ValueChanged += WorkspaceGap_ValueChanged;
+
+            _syncWithTheme.Checked = Settings.Instance.SyncWithWindowsTheme;
+            _syncWithTheme.CheckedChanged += SyncWithTheme_CheckedChanged;
             
             _container = container;
         }
@@ -89,6 +92,23 @@ namespace KomoSwitch.Controls
 
             dialog.Apply -= FontDialog_OnApply;
         }
+        
+        private void SyncWithTheme_CheckedChanged(object sender, EventArgs e)
+        {
+            var checkBox = (CheckBox)sender;
+            Settings.Instance.SyncWithWindowsTheme = checkBox.Checked;
+
+            var color = checkBox.Checked
+                ? ColorManager.Windows.AccentColor
+                : ColorManager.Windows.DefaultAccentColor;
+            
+            Settings.Instance.WorkspaceNameColors.Active = ColorTranslator.ToHtml(color);
+            Settings.Instance.StatusLineColors.Active = ColorTranslator.ToHtml(color);
+            
+            IterateWorkspaceControls(workspace => workspace.SetAccentColors());
+            
+            // TODO disable color setting controls related to accent colors
+        }
 
         private void FontDialog_OnApply(object sender, EventArgs e)
         {
@@ -107,6 +127,14 @@ namespace KomoSwitch.Controls
             }
             
             _container.Refresh();
+        }
+
+        private void SettingsForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
         }
 
         private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)

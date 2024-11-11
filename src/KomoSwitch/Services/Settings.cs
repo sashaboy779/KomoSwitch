@@ -19,6 +19,12 @@ namespace KomoSwitch.Services
         
         public int WorkspaceGap { get; set; } = 10;
         
+        public bool SyncWithWindowsTheme { get; set; } = true;
+
+        public WorkspaceNameColors WorkspaceNameColors { get; } = new WorkspaceNameColors();
+
+        public StatusLineColors StatusLineColors { get; } = new StatusLineColors();
+        
         public static Settings Instance
         {
             get
@@ -67,5 +73,16 @@ namespace KomoSwitch.Services
             var json = JsonConvert.SerializeObject(Instance, SerializerSettings);
             File.WriteAllText(PathManager.SettingsJson, json);
         }
+    }
+        
+    public class WorkspaceNameColors
+    {
+        public string Active { get; set; } = "#0078d7";
+        public string Default { get; set; } = "#FFFFFF";
+    }
+    
+    public class StatusLineColors
+    {
+        public string Active { get; set; } = "#0078d7";
     }
 }

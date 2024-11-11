@@ -51,7 +51,7 @@ namespace KomoSwitch.Controls
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this._workspaceWidth = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this._syncWithTheme = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -226,7 +226,7 @@ namespace KomoSwitch.Controls
             // 
             this.groupBox1.Controls.Add(this._workspaceWidth);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.checkBox2);
+            this.groupBox1.Controls.Add(this._syncWithTheme);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.label6);
@@ -264,14 +264,14 @@ namespace KomoSwitch.Controls
             this.label8.TabIndex = 14;
             this.label8.Text = "Restart is required for changes to take affect";
             // 
-            // checkBox2
+            // _syncWithTheme
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(963, 506);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(34, 33);
-            this.checkBox2.TabIndex = 13;
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this._syncWithTheme.AutoSize = true;
+            this._syncWithTheme.Location = new System.Drawing.Point(963, 506);
+            this._syncWithTheme.Name = "_syncWithTheme";
+            this._syncWithTheme.Size = new System.Drawing.Size(34, 33);
+            this._syncWithTheme.TabIndex = 13;
+            this._syncWithTheme.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -387,6 +387,7 @@ namespace KomoSwitch.Controls
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1209, 918);
             this.Controls.Add(this.panel1);
+            this.KeyPreview = true;
             this.Location = new System.Drawing.Point(15, 15);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -395,6 +396,7 @@ namespace KomoSwitch.Controls
             this.ShowIcon = false;
             this.Text = "KomoSwitch Settings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsForm_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SettingsForm_KeyDown);
             this.panel1.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -438,7 +440,7 @@ namespace KomoSwitch.Controls
         private ColorSettingsControl colorSettingsControl4;
         private ColorSettingsControl colorSettingsControl3;
         private ColorSettingsControl colorSettingsControl2;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox _syncWithTheme;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox4;
         private ColorSettingsControl colorSettingsControl9;

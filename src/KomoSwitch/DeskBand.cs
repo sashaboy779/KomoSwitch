@@ -25,6 +25,7 @@ namespace KomoSwitch
         {
             InitializeLogger();
             InitializeSettings();
+            InitializeColorManager();
 
             _listener = new EventListener();
             var workspacesContainer = new WorkspacesContainer(_listener, new Storage());
@@ -73,6 +74,11 @@ namespace KomoSwitch
                 
                 throw;
             }
+        }
+
+        private void InitializeColorManager()
+        {
+            ColorManager.Initialize();
         }
 
         private void InitializeDeskBand(WorkspacesContainer workspacesContainer)

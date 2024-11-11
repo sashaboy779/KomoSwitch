@@ -6,20 +6,20 @@
   "workspaceGap": 10,
   "hideEmptyWorkspaces": false,
   "syncWithWindowsTheme": true,
-  "workspaceNameColor": {
+  "workspaceNameColors": {
     "default": "#FFFFFF",
-    "active": "#97E9FF",
+    "active": "#0078d7",
     "waiting": "#696969",
     "error": "#B93139"
   },
-  "workspaceBackgroundColor": {
+  "workspaceBackgroundColors": {
     "default": "#00000000",
     "active": "#32808080",
     "hover": "#19808080",
     "hoverWhenActive": "#4B808080"
   },
-  "statusLineColor": {
-    "active": "#97E9FF",
+  "statusLineColors": {
+    "active": "#0078d7",
     "activeWhenWaiting": "#FFF5F5F5",
     "waiting": "#696969",
     "empty": "#696969",

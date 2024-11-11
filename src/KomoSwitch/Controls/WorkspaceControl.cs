@@ -30,7 +30,6 @@ namespace KomoSwitch.Controls
         private readonly Color _backgroundFocusedColor = Color.FromArgb(50, 128, 128, 128);
         private readonly Color _backgroundHoverWhenFocusedColor = Color.FromArgb(75, 128, 128, 128);
         private readonly Color _labelDefaultColor = Color.White;
-        private readonly Color _labelFocusedColor = Color.FromArgb(151, 233, 239);
         private readonly Color _waitingColor = Color.DimGray;
         private readonly Color _errorColor = Color.FromArgb(185,49,57);
 
@@ -44,6 +43,7 @@ namespace KomoSwitch.Controls
             WorkspaceIndex = workspace.Index;
             _workspaceName.Text = workspace.Name;
             
+            SetAccentColors();
             SetStatusLineLocation(Settings.Instance.StatusLineLocation);
             SetFont(Settings.Instance.Font);
             SetWorkspaceWidth(Settings.Instance.WorkspaceWidth);
@@ -64,7 +64,7 @@ namespace KomoSwitch.Controls
             if (_blocked)
                 return;
 
-            _workspaceBackground.BackColor = IsControlFocused()
+            _workspaceBackground.BackColor = IsFocused
                 ? _backgroundFocusedColor
                 : _backgroundDefaultColor;
         }
@@ -74,7 +74,7 @@ namespace KomoSwitch.Controls
             if (_blocked)
                 return;
 
-            _workspaceBackground.BackColor = IsControlFocused()
+            _workspaceBackground.BackColor = IsFocused
                 ? _backgroundHoverWhenFocusedColor
                 : _backgroundHoverColor;
         }
@@ -87,9 +87,8 @@ namespace KomoSwitch.Controls
             if (e.Button != MouseButtons.Left)
                 return;
 
-            var isFocused = IsControlFocused();
             
-            if (isFocused)
+            if (IsFocused)
                 return;
             
             SetFocus(true);
@@ -103,7 +102,7 @@ namespace KomoSwitch.Controls
                 return;
 
             _workspaceName.ForeColor = shouldFocus
-                ? _labelFocusedColor
+                ? ColorManager.Workspace.Active
                 : _labelDefaultColor;
 
             _workspaceBackground.BackColor = shouldFocus
@@ -154,11 +153,6 @@ namespace KomoSwitch.Controls
                 ? Color.WhiteSmoke
                 : _waitingColor;
         }
-        
-        private bool IsControlFocused()
-        {
-            return _workspaceName.ForeColor != _labelDefaultColor;
-        }
 
         public void SetStatusLineLocation(EStatusLineLocation location)
         {
@@ -187,6 +181,15 @@ namespace KomoSwitch.Controls
         public void SetWorkspaceGap(int gap)
         {
             Padding = new Padding(gap, 0, gap, 0);
+        }
+
+        public void SetAccentColors()
+        {
+            _statusLine.BackColor = ColorManager.StatusLine.Active;
+            
+            _workspaceName.ForeColor = IsFocused 
+                ? ColorManager.Workspace.Active
+                : ColorManager.Workspace.Default;
         }
     }
 }
