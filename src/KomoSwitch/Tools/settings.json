@@ -6,7 +6,7 @@
   "workspaceGap": 10,
   "hideEmptyWorkspaces": false,
   "syncWithWindowsTheme": true,
-  "workspaceNameColors": {
+  "workspaceColors": {
     "default": "#FFFFFF",
     "active": "#0078d7",
     "waiting": "#696969",
@@ -22,7 +22,6 @@
     "active": "#0078d7",
     "activeWhenWaiting": "#FFF5F5F5",
     "waiting": "#696969",
-    "empty": "#696969",
     "error": "#B93139"
   }
 }

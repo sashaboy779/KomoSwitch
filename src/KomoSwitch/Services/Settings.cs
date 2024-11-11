@@ -21,9 +21,44 @@ namespace KomoSwitch.Services
         
         public bool SyncWithWindowsTheme { get; set; } = true;
 
-        public WorkspaceNameColors WorkspaceNameColors { get; } = new WorkspaceNameColors();
+        public WorkspaceColorSettings WorkspaceColors { get; } = new WorkspaceColorSettings();
+        
+        public WorkspaceBackgroundColorSettings WorkspaceBackgroundColors { get; } = new WorkspaceBackgroundColorSettings();
 
-        public StatusLineColors StatusLineColors { get; } = new StatusLineColors();
+        public StatusLineColorSettings StatusLineColors { get; } = new StatusLineColorSettings();
+        
+        public class WorkspaceColorSettings
+        {
+            public string Default { get; set; } = "#FFFFFF";
+
+            public string Active { get; set; } = "#0078d7";
+        
+            public string Waiting { get; set; } = "#696969";
+        
+            public string Error { get; set; } = "#B93139";
+        }
+    
+        public class WorkspaceBackgroundColorSettings
+        {
+            public string Default { get; set; } = "#00000000";
+        
+            public string Active { get; set; } = "#32808080";
+        
+            public string Hover { get; set; } = "#19808080";
+        
+            public string HoverWhenActive { get; set; } = "#4B808080";
+        }
+    
+        public class StatusLineColorSettings
+        {
+            public string Active { get; set; } = "#0078d7";
+        
+            public string ActiveWhenWaiting { get; set; } = "#FFF5F5F5";
+        
+            public string Waiting { get; set; } = "#696969";
+        
+            public string Error { get; set; } = "#B93139";
+        }
         
         public static Settings Instance
         {
@@ -73,16 +108,5 @@ namespace KomoSwitch.Services
             var json = JsonConvert.SerializeObject(Instance, SerializerSettings);
             File.WriteAllText(PathManager.SettingsJson, json);
         }
-    }
-        
-    public class WorkspaceNameColors
-    {
-        public string Active { get; set; } = "#0078d7";
-        public string Default { get; set; } = "#FFFFFF";
-    }
-    
-    public class StatusLineColors
-    {
-        public string Active { get; set; } = "#0078d7";
     }
 }

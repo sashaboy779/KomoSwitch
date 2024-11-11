@@ -120,6 +120,7 @@
     <Compile Include="Models\Notifications\State.cs" />
     <Compile Include="Models\Notifications\Workspace.cs" />
     <Compile Include="Models\Notifications\WorkspaceElement.cs" />
+    <Compile Include="Models\Settings\EColorSetting.cs" />
     <Compile Include="Models\Settings\EStatusLineLocation.cs" />
     <Compile Include="Models\Workspace.cs" />
     <Compile Include="DeskBand.cs" />

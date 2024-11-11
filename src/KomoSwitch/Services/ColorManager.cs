@@ -19,9 +19,24 @@ namespace KomoSwitch.Services
         {
             public static Color Active => Settings.Instance.SyncWithWindowsTheme
                 ? Windows.AccentColor
-                : ColorTranslator.FromHtml(Settings.Instance.WorkspaceNameColors.Active); 
+                : ColorTranslator.FromHtml(Settings.Instance.WorkspaceColors.Active); 
             
-            public static Color Default => ColorTranslator.FromHtml(Settings.Instance.WorkspaceNameColors.Default); 
+            public static Color Default => ColorTranslator.FromHtml(Settings.Instance.WorkspaceColors.Default); 
+            
+            public static Color Waiting => ColorTranslator.FromHtml(Settings.Instance.WorkspaceColors.Waiting); 
+            
+            public static Color Error => ColorTranslator.FromHtml(Settings.Instance.WorkspaceColors.Error); 
+        }
+        
+        public static class WorkspaceBackground
+        {
+            public static Color Default => ColorTranslator.FromHtml(Settings.Instance.WorkspaceBackgroundColors.Default); 
+            
+            public static Color Active => ColorTranslator.FromHtml(Settings.Instance.WorkspaceBackgroundColors.Active); 
+            
+            public static Color Hover => ColorTranslator.FromHtml(Settings.Instance.WorkspaceBackgroundColors.Hover); 
+            
+            public static Color HoverWhenActive => ColorTranslator.FromHtml(Settings.Instance.WorkspaceBackgroundColors.HoverWhenActive); 
         }
         
         public static class StatusLine
@@ -29,6 +44,12 @@ namespace KomoSwitch.Services
             public static Color Active => Settings.Instance.SyncWithWindowsTheme
                 ? Windows.AccentColor
                 : ColorTranslator.FromHtml(Settings.Instance.StatusLineColors.Active); 
+            
+            public static Color ActiveWhenWaiting => ColorTranslator.FromHtml(Settings.Instance.StatusLineColors.ActiveWhenWaiting); 
+           
+            public static Color Waiting => ColorTranslator.FromHtml(Settings.Instance.StatusLineColors.Waiting); 
+           
+            public static Color Error => ColorTranslator.FromHtml(Settings.Instance.StatusLineColors.Error); 
         }
 
         public static void Initialize()

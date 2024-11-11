@@ -9,6 +9,8 @@ namespace KomoSwitch.Controls
     public partial class SettingsForm : Form
     {
         private readonly WorkspacesContainer _container;
+        private readonly ColorSettingsControl _activeWorkspaceNameColorSetting;
+        private readonly ColorSettingsControl _activeStatusLineColorSetting;
         
         public SettingsForm(WorkspacesContainer container)
         {
@@ -34,8 +36,38 @@ namespace KomoSwitch.Controls
 
             _syncWithTheme.Checked = Settings.Instance.SyncWithWindowsTheme;
             _syncWithTheme.CheckedChanged += SyncWithTheme_CheckedChanged;
+
+            foreach (var control in _workspaceColors.Controls)
+            {
+                if (control is ColorSettingsControl settingsControl 
+                    && settingsControl.ColorSetting == EColorSetting.WorkspaceActive)
+                {
+                    _activeWorkspaceNameColorSetting = settingsControl;
+                    break;
+                }
+            }
             
+            foreach (var control in _statusLineColors.Controls)
+            {
+                if (control is ColorSettingsControl settingsControl 
+                    && settingsControl.ColorSetting == EColorSetting.StatusLineActive)
+                {
+                    _activeStatusLineColorSetting = settingsControl;
+                    break;
+                }
+            }
+
+            UpdateDependentOnSyncWithWindowsThemeControls(!Settings.Instance.SyncWithWindowsTheme);
             _container = container;
+        }
+
+        private void UpdateDependentOnSyncWithWindowsThemeControls(bool enabled)
+        {
+            _activeWorkspaceNameColorSetting.Enabled = enabled;
+            _activeStatusLineColorSetting.Enabled = enabled;
+            
+            _activeWorkspaceNameColorSetting.RefreshColorHexOnUi();
+            _activeStatusLineColorSetting.RefreshColorHexOnUi();
         }
 
         private void StatusLineLocationList_SelectedIndexChanged(object sender, EventArgs e)
@@ -102,18 +134,23 @@ namespace KomoSwitch.Controls
                 ? ColorManager.Windows.AccentColor
                 : ColorManager.Windows.DefaultAccentColor;
             
-            Settings.Instance.WorkspaceNameColors.Active = ColorTranslator.ToHtml(color);
+            Settings.Instance.WorkspaceColors.Active = ColorTranslator.ToHtml(color);
             Settings.Instance.StatusLineColors.Active = ColorTranslator.ToHtml(color);
             
-            IterateWorkspaceControls(workspace => workspace.SetAccentColors());
+            UpdateDependentOnSyncWithWindowsThemeControls(!Settings.Instance.SyncWithWindowsTheme);
             
-            // TODO disable color setting controls related to accent colors
+            IterateWorkspaceControls(workspace => workspace.SetAccentColors());
         }
 
         private void FontDialog_OnApply(object sender, EventArgs e)
         {
             var dialog = (FontDialog)sender;
             IterateWorkspaceControls(workspace => workspace.SetFont(dialog.Font));
+        }
+
+        private void ColorSettingsControl_ColorPicked(object sender, EventArgs e)
+        {
+            IterateWorkspaceControls(workspace => workspace.RefreshColors());
         }
 
         private void IterateWorkspaceControls(Action<WorkspaceControl> action)
