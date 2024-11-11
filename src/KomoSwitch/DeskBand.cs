@@ -99,7 +99,7 @@ namespace KomoSwitch
                 }
             };
             
-            var openLogsAction = new DeskBandMenuAction("Open logs folder");
+            var openLogsAction = new DeskBandMenuAction("Open Logs");
             openLogsAction.Clicked += (sender, args) => CommandPromptWrapper.OpenFolder(logsFolder);
             
             Options.ContextMenuItems = new List<DeskBandMenuItem> { settingsAction, openLogsAction };
