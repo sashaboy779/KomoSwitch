@@ -130,9 +130,7 @@ namespace KomoSwitch.Controls
             var checkBox = (CheckBox)sender;
             Settings.Instance.SyncWithWindowsTheme = checkBox.Checked;
 
-            var color = checkBox.Checked
-                ? ColorManager.Windows.AccentColor
-                : ColorManager.Windows.DefaultAccentColor;
+            var color = ColorManager.Windows.AccentColor;
             
             Settings.Instance.WorkspaceColors.Active = ColorTranslator.ToHtml(color);
             Settings.Instance.StatusLineColors.Active = ColorTranslator.ToHtml(color);

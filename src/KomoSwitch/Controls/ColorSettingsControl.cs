@@ -110,6 +110,7 @@ namespace KomoSwitch.Controls
         {
             var dialog = new ColorDialog();
             dialog.FullOpen = true;
+            dialog.Color = _hexColorBackground.BackColor;
             
             var result = dialog.ShowDialog();
 

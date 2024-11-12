@@ -149,7 +149,7 @@ namespace KomoSwitch.Controls
             // colorSettingsControl12
             // 
             this.colorSettingsControl12.AutoSize = true;
-            this.colorSettingsControl12.ColorHex = "#0078D7";
+            this.colorSettingsControl12.ColorHex = "#00B7C3";
             this.colorSettingsControl12.ColorSetting = KomoSwitch.Models.Settings.EColorSetting.StatusLineActive;
             this.colorSettingsControl12.Dock = System.Windows.Forms.DockStyle.Top;
             this.colorSettingsControl12.Location = new System.Drawing.Point(3, 34);
@@ -298,7 +298,7 @@ namespace KomoSwitch.Controls
             // colorSettingsControl2
             // 
             this.colorSettingsControl2.AutoSize = true;
-            this.colorSettingsControl2.ColorHex = "#0078D7";
+            this.colorSettingsControl2.ColorHex = "#00B7C3";
             this.colorSettingsControl2.ColorSetting = KomoSwitch.Models.Settings.EColorSetting.WorkspaceActive;
             this.colorSettingsControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.colorSettingsControl2.Location = new System.Drawing.Point(3, 120);
@@ -313,7 +313,6 @@ namespace KomoSwitch.Controls
             // colorSettingsControl1
             // 
             this.colorSettingsControl1.AutoSize = true;
-            this.colorSettingsControl1.ColorHex = "#408080";
             this.colorSettingsControl1.ColorSetting = KomoSwitch.Models.Settings.EColorSetting.WorkspaceDefault;
             this.colorSettingsControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.colorSettingsControl1.Location = new System.Drawing.Point(3, 34);
@@ -515,6 +514,7 @@ namespace KomoSwitch.Controls
             this.Name = "SettingsForm";
             this.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KomoSwitch Settings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsForm_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SettingsForm_KeyDown);
