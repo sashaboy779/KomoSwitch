@@ -46,7 +46,7 @@ namespace KomoSwitch.Services
             }
             catch (Exception e)
             {
-                Log.Fatal(e, "An unexpected error occured");
+                Log.Fatal(e, "An unexpected error occured on starting pipe: {Message}", e.Message);
             }
         }
 
@@ -58,7 +58,7 @@ namespace KomoSwitch.Services
             }
             catch (Exception e)
             {
-                Log.Fatal(e, "An unexpected error occured");
+                Log.Fatal(e, "An unexpected error occured on subscribing: {Message}", e.Message);
             }
         }
 
