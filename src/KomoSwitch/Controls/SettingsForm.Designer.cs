@@ -451,6 +451,7 @@ namespace KomoSwitch.Controls
             this._appMinWidth.Name = "_appMinWidth";
             this._appMinWidth.Size = new System.Drawing.Size(215, 38);
             this._appMinWidth.TabIndex = 5;
+            this._appMinWidth.ValueChanged += new System.EventHandler(this.AppMinWidth_ValueChanged);
             // 
             // label3
             // 
@@ -516,7 +517,7 @@ namespace KomoSwitch.Controls
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KomoSwitch Settings";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SettingsForm_FormClosed);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SettingsForm_KeyDown);
             this.panel1.ResumeLayout(false);
             this._statusLineColors.ResumeLayout(false);

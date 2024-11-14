@@ -168,12 +168,14 @@ namespace KomoSwitch.Controls
         {
             if (e.KeyCode == Keys.Escape)
             {
+                Focus();
                 Close();
             }
         }
 
-        private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void SettingsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            Focus();
             Settings.Save();
         }
     }
