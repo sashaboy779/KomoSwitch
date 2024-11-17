@@ -20,9 +20,9 @@ namespace KomoSwitch.Services
         public event EventHandler<WorkspaceFocusedEventArgs> WorkspaceFocused;
         
         private readonly EventWaitHandle _shutdownPipeLoopEvent = new ManualResetEvent(false);
+        private readonly string _pipeName = Environment.UserName + "\\KomoSwitchPipe";
         private CancellationTokenSource _subscribeCancellation;
 
-        private const string PipeName = "KomoSwitchPipe";
         private const int SubscribeCommandAttempt = 20;
         private const int WaitBetweenSubscribePipeCommand = 3;
         private const int WaitBeforeReconnectKomorebi = 3;
@@ -68,7 +68,7 @@ namespace KomoSwitch.Services
             
             while (!isShutdownRequested)
             {
-                var stream = new NamedPipeServerStream(PipeName, PipeDirection.In, -1, PipeTransmissionMode.Message, PipeOptions.Asynchronous);
+                var stream = new NamedPipeServerStream(_pipeName, PipeDirection.In, -1, PipeTransmissionMode.Message, PipeOptions.Asynchronous);
                 try
                 {
                     var result = stream.BeginWaitForConnection(HandleConnection, stream);
@@ -113,7 +113,7 @@ namespace KomoSwitch.Services
                         return;
                     }
                     
-                    var result = CommandPromptWrapper.SubscribePipe(PipeName);
+                    var result = CommandPromptWrapper.SubscribePipe(_pipeName);
                     if (result.IsSuccess)
                     {
                         Log.Information("Komorebi Successfully subscribed to pipe");
@@ -216,7 +216,7 @@ namespace KomoSwitch.Services
             _shutdownPipeLoopEvent.Set();
             
             Log.Information("Running unsubscribe pipe command");
-            CommandPromptWrapper.UnsubscribePipe(PipeName);
+            CommandPromptWrapper.UnsubscribePipe(_pipeName);
             
             SystemEvents.SessionEnding -= OnSessionEnding;
         }
