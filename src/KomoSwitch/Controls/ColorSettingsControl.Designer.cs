@@ -39,19 +39,20 @@
             // _settingName
             // 
             this._settingName.AutoSize = true;
-            this._settingName.Location = new System.Drawing.Point(0, 10);
+            this._settingName.Location = new System.Drawing.Point(0, 5);
             this._settingName.Margin = new System.Windows.Forms.Padding(0);
             this._settingName.Name = "_settingName";
-            this._settingName.Size = new System.Drawing.Size(106, 32);
+            this._settingName.Size = new System.Drawing.Size(49, 16);
             this._settingName.TabIndex = 0;
             this._settingName.Text = "Default";
             // 
             // _pickColorButton
             // 
             this._pickColorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._pickColorButton.Location = new System.Drawing.Point(535, 3);
+            this._pickColorButton.Location = new System.Drawing.Point(187, 0);
+            this._pickColorButton.Margin = new System.Windows.Forms.Padding(2);
             this._pickColorButton.Name = "_pickColorButton";
-            this._pickColorButton.Size = new System.Drawing.Size(155, 50);
+            this._pickColorButton.Size = new System.Drawing.Size(78, 26);
             this._pickColorButton.TabIndex = 2;
             this._pickColorButton.Text = "Pick";
             this._pickColorButton.UseVisualStyleBackColor = true;
@@ -61,17 +62,19 @@
             // 
             this._hexColorBackground.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._hexColorBackground.Controls.Add(this._hexColorText);
-            this._hexColorBackground.Location = new System.Drawing.Point(360, 3);
+            this._hexColorBackground.Location = new System.Drawing.Point(99, 0);
+            this._hexColorBackground.Margin = new System.Windows.Forms.Padding(2);
             this._hexColorBackground.Name = "_hexColorBackground";
-            this._hexColorBackground.Size = new System.Drawing.Size(169, 50);
+            this._hexColorBackground.Size = new System.Drawing.Size(84, 26);
             this._hexColorBackground.TabIndex = 3;
             // 
             // _hexColorText
             // 
-            this._hexColorText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._hexColorText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._hexColorText.Location = new System.Drawing.Point(0, 0);
+            this._hexColorText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._hexColorText.Name = "_hexColorText";
-            this._hexColorText.Size = new System.Drawing.Size(169, 50);
+            this._hexColorText.Size = new System.Drawing.Size(84, 26);
             this._hexColorText.TabIndex = 0;
             this._hexColorText.Text = "#123456";
             this._hexColorText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -81,9 +84,10 @@
             this.button1.AccessibleDescription = "Reset color to default";
             this.button1.AccessibleName = "Reset";
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(696, 3);
+            this.button1.Location = new System.Drawing.Point(269, 0);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(49, 50);
+            this.button1.Size = new System.Drawing.Size(24, 26);
             this.button1.TabIndex = 4;
             this.button1.Text = "↻";
             this.button1.UseVisualStyleBackColor = true;
@@ -91,7 +95,7 @@
             // 
             // ColorSettingsControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.Controls.Add(this.button1);
@@ -100,10 +104,11 @@
             this.Controls.Add(this._settingName);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ColorSettingsControl";
-            this.Size = new System.Drawing.Size(745, 56);
+            this.Size = new System.Drawing.Size(295, 30);
             this._hexColorBackground.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private System.Windows.Forms.Button button1;

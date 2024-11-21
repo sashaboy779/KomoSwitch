@@ -89,18 +89,20 @@ namespace KomoSwitch.Controls
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(10, 0);
+            this.panel1.Location = new System.Drawing.Point(5, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(15, 10, 15, 10);
-            this.panel1.Size = new System.Drawing.Size(1300, 912);
+            this.panel1.Padding = new System.Windows.Forms.Padding(8, 5, 8, 5);
+            this.panel1.Size = new System.Drawing.Size(650, 471);
             this.panel1.TabIndex = 0;
             // 
             // panel5
             // 
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(15, 1671);
+            this.panel5.Location = new System.Drawing.Point(8, 852);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1227, 30);
+            this.panel5.Size = new System.Drawing.Size(613, 15);
             this.panel5.TabIndex = 7;
             // 
             // _statusLineColors
@@ -109,9 +111,11 @@ namespace KomoSwitch.Controls
             this._statusLineColors.Controls.Add(this.colorSettingsControl11);
             this._statusLineColors.Controls.Add(this.colorSettingsControl12);
             this._statusLineColors.Dock = System.Windows.Forms.DockStyle.Top;
-            this._statusLineColors.Location = new System.Drawing.Point(15, 1378);
+            this._statusLineColors.Location = new System.Drawing.Point(8, 706);
+            this._statusLineColors.Margin = new System.Windows.Forms.Padding(2);
             this._statusLineColors.Name = "_statusLineColors";
-            this._statusLineColors.Size = new System.Drawing.Size(1227, 293);
+            this._statusLineColors.Padding = new System.Windows.Forms.Padding(2);
+            this._statusLineColors.Size = new System.Drawing.Size(613, 146);
             this._statusLineColors.TabIndex = 5;
             this._statusLineColors.TabStop = false;
             this._statusLineColors.Text = "Status line colors";
@@ -122,12 +126,12 @@ namespace KomoSwitch.Controls
             this.colorSettingsControl10.ColorHex = "#B93139";
             this.colorSettingsControl10.ColorSetting = KomoSwitch.Models.Settings.EColorSetting.StatusLineError;
             this.colorSettingsControl10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.colorSettingsControl10.Location = new System.Drawing.Point(3, 196);
+            this.colorSettingsControl10.Location = new System.Drawing.Point(2, 98);
             this.colorSettingsControl10.Margin = new System.Windows.Forms.Padding(0);
             this.colorSettingsControl10.Name = "colorSettingsControl10";
-            this.colorSettingsControl10.Padding = new System.Windows.Forms.Padding(30, 10, 25, 10);
+            this.colorSettingsControl10.Padding = new System.Windows.Forms.Padding(15, 5, 12, 5);
             this.colorSettingsControl10.SettingName = "Error";
-            this.colorSettingsControl10.Size = new System.Drawing.Size(1221, 76);
+            this.colorSettingsControl10.Size = new System.Drawing.Size(609, 38);
             this.colorSettingsControl10.TabIndex = 2;
             this.colorSettingsControl10.ColorPicked += new System.EventHandler(this.ColorSettingsControl_ColorPicked);
             // 
@@ -137,36 +141,37 @@ namespace KomoSwitch.Controls
             this.colorSettingsControl11.ColorHex = "#696969";
             this.colorSettingsControl11.ColorSetting = KomoSwitch.Models.Settings.EColorSetting.StatusLineWaiting;
             this.colorSettingsControl11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.colorSettingsControl11.Location = new System.Drawing.Point(3, 120);
+            this.colorSettingsControl11.Location = new System.Drawing.Point(2, 60);
             this.colorSettingsControl11.Margin = new System.Windows.Forms.Padding(0);
             this.colorSettingsControl11.Name = "colorSettingsControl11";
-            this.colorSettingsControl11.Padding = new System.Windows.Forms.Padding(30, 10, 25, 10);
+            this.colorSettingsControl11.Padding = new System.Windows.Forms.Padding(15, 5, 12, 5);
             this.colorSettingsControl11.SettingName = "Waiting";
-            this.colorSettingsControl11.Size = new System.Drawing.Size(1221, 76);
+            this.colorSettingsControl11.Size = new System.Drawing.Size(609, 38);
             this.colorSettingsControl11.TabIndex = 1;
             this.colorSettingsControl11.ColorPicked += new System.EventHandler(this.ColorSettingsControl_ColorPicked);
             // 
             // colorSettingsControl12
             // 
             this.colorSettingsControl12.AutoSize = true;
-            this.colorSettingsControl12.ColorHex = "#00B7C3";
+            this.colorSettingsControl12.ColorHex = "#3ACE09";
             this.colorSettingsControl12.ColorSetting = KomoSwitch.Models.Settings.EColorSetting.StatusLineActive;
             this.colorSettingsControl12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.colorSettingsControl12.Location = new System.Drawing.Point(3, 34);
+            this.colorSettingsControl12.Location = new System.Drawing.Point(2, 17);
             this.colorSettingsControl12.Margin = new System.Windows.Forms.Padding(0);
             this.colorSettingsControl12.Name = "colorSettingsControl12";
-            this.colorSettingsControl12.Padding = new System.Windows.Forms.Padding(30, 20, 25, 10);
+            this.colorSettingsControl12.Padding = new System.Windows.Forms.Padding(15, 10, 12, 5);
             this.colorSettingsControl12.SettingName = "Active";
-            this.colorSettingsControl12.Size = new System.Drawing.Size(1221, 86);
+            this.colorSettingsControl12.Size = new System.Drawing.Size(609, 43);
             this.colorSettingsControl12.TabIndex = 0;
             this.colorSettingsControl12.ColorPicked += new System.EventHandler(this.ColorSettingsControl_ColorPicked);
             // 
             // panel4
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(15, 1348);
+            this.panel4.Location = new System.Drawing.Point(8, 691);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1227, 30);
+            this.panel4.Size = new System.Drawing.Size(613, 15);
             this.panel4.TabIndex = 6;
             // 
             // _workspaceBackgroundColors
@@ -176,9 +181,11 @@ namespace KomoSwitch.Controls
             this._workspaceBackgroundColors.Controls.Add(this.colorSettingsControl7);
             this._workspaceBackgroundColors.Controls.Add(this.colorSettingsControl8);
             this._workspaceBackgroundColors.Dock = System.Windows.Forms.DockStyle.Top;
-            this._workspaceBackgroundColors.Location = new System.Drawing.Point(15, 994);
+            this._workspaceBackgroundColors.Location = new System.Drawing.Point(8, 505);
+            this._workspaceBackgroundColors.Margin = new System.Windows.Forms.Padding(2);
             this._workspaceBackgroundColors.Name = "_workspaceBackgroundColors";
-            this._workspaceBackgroundColors.Size = new System.Drawing.Size(1227, 354);
+            this._workspaceBackgroundColors.Padding = new System.Windows.Forms.Padding(2);
+            this._workspaceBackgroundColors.Size = new System.Drawing.Size(613, 186);
             this._workspaceBackgroundColors.TabIndex = 4;
             this._workspaceBackgroundColors.TabStop = false;
             this._workspaceBackgroundColors.Text = "Workspace background colors";
@@ -189,12 +196,12 @@ namespace KomoSwitch.Controls
             this.colorSettingsControl5.ColorHex = "#4B808080";
             this.colorSettingsControl5.ColorSetting = KomoSwitch.Models.Settings.EColorSetting.WorkspaceBackgroundHoverWhenActive;
             this.colorSettingsControl5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.colorSettingsControl5.Location = new System.Drawing.Point(3, 272);
+            this.colorSettingsControl5.Location = new System.Drawing.Point(2, 136);
             this.colorSettingsControl5.Margin = new System.Windows.Forms.Padding(0);
             this.colorSettingsControl5.Name = "colorSettingsControl5";
-            this.colorSettingsControl5.Padding = new System.Windows.Forms.Padding(30, 10, 25, 10);
+            this.colorSettingsControl5.Padding = new System.Windows.Forms.Padding(15, 5, 12, 5);
             this.colorSettingsControl5.SettingName = "Hover when active";
-            this.colorSettingsControl5.Size = new System.Drawing.Size(1221, 76);
+            this.colorSettingsControl5.Size = new System.Drawing.Size(609, 38);
             this.colorSettingsControl5.TabIndex = 3;
             this.colorSettingsControl5.ColorPicked += new System.EventHandler(this.ColorSettingsControl_ColorPicked);
             // 
@@ -204,12 +211,12 @@ namespace KomoSwitch.Controls
             this.colorSettingsControl6.ColorHex = "#19808080";
             this.colorSettingsControl6.ColorSetting = KomoSwitch.Models.Settings.EColorSetting.WorkspaceBackgroundHover;
             this.colorSettingsControl6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.colorSettingsControl6.Location = new System.Drawing.Point(3, 196);
+            this.colorSettingsControl6.Location = new System.Drawing.Point(2, 98);
             this.colorSettingsControl6.Margin = new System.Windows.Forms.Padding(0);
             this.colorSettingsControl6.Name = "colorSettingsControl6";
-            this.colorSettingsControl6.Padding = new System.Windows.Forms.Padding(30, 10, 25, 10);
+            this.colorSettingsControl6.Padding = new System.Windows.Forms.Padding(15, 5, 12, 5);
             this.colorSettingsControl6.SettingName = "Hover";
-            this.colorSettingsControl6.Size = new System.Drawing.Size(1221, 76);
+            this.colorSettingsControl6.Size = new System.Drawing.Size(609, 38);
             this.colorSettingsControl6.TabIndex = 2;
             this.colorSettingsControl6.ColorPicked += new System.EventHandler(this.ColorSettingsControl_ColorPicked);
             // 
@@ -219,12 +226,12 @@ namespace KomoSwitch.Controls
             this.colorSettingsControl7.ColorHex = "#32808080";
             this.colorSettingsControl7.ColorSetting = KomoSwitch.Models.Settings.EColorSetting.WorkspaceBackgroundActive;
             this.colorSettingsControl7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.colorSettingsControl7.Location = new System.Drawing.Point(3, 120);
+            this.colorSettingsControl7.Location = new System.Drawing.Point(2, 60);
             this.colorSettingsControl7.Margin = new System.Windows.Forms.Padding(0);
             this.colorSettingsControl7.Name = "colorSettingsControl7";
-            this.colorSettingsControl7.Padding = new System.Windows.Forms.Padding(30, 10, 25, 10);
+            this.colorSettingsControl7.Padding = new System.Windows.Forms.Padding(15, 5, 12, 5);
             this.colorSettingsControl7.SettingName = "Active";
-            this.colorSettingsControl7.Size = new System.Drawing.Size(1221, 76);
+            this.colorSettingsControl7.Size = new System.Drawing.Size(609, 38);
             this.colorSettingsControl7.TabIndex = 1;
             this.colorSettingsControl7.ColorPicked += new System.EventHandler(this.ColorSettingsControl_ColorPicked);
             // 
@@ -234,21 +241,22 @@ namespace KomoSwitch.Controls
             this.colorSettingsControl8.ColorHex = "#00000000";
             this.colorSettingsControl8.ColorSetting = KomoSwitch.Models.Settings.EColorSetting.WorkspaceBackgroundDefault;
             this.colorSettingsControl8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.colorSettingsControl8.Location = new System.Drawing.Point(3, 34);
+            this.colorSettingsControl8.Location = new System.Drawing.Point(2, 17);
             this.colorSettingsControl8.Margin = new System.Windows.Forms.Padding(0);
             this.colorSettingsControl8.Name = "colorSettingsControl8";
-            this.colorSettingsControl8.Padding = new System.Windows.Forms.Padding(30, 20, 25, 10);
-            this.colorSettingsControl8.Size = new System.Drawing.Size(1221, 86);
+            this.colorSettingsControl8.Padding = new System.Windows.Forms.Padding(15, 10, 12, 5);
+            this.colorSettingsControl8.Size = new System.Drawing.Size(609, 43);
             this.colorSettingsControl8.TabIndex = 0;
             this.colorSettingsControl8.ColorPicked += new System.EventHandler(this.ColorSettingsControl_ColorPicked);
             // 
             // panel3
             // 
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(15, 964);
+            this.panel3.Location = new System.Drawing.Point(8, 490);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(30);
-            this.panel3.Size = new System.Drawing.Size(1227, 30);
+            this.panel3.Padding = new System.Windows.Forms.Padding(15);
+            this.panel3.Size = new System.Drawing.Size(613, 15);
             this.panel3.TabIndex = 5;
             // 
             // _workspaceColors
@@ -258,9 +266,11 @@ namespace KomoSwitch.Controls
             this._workspaceColors.Controls.Add(this.colorSettingsControl2);
             this._workspaceColors.Controls.Add(this.colorSettingsControl1);
             this._workspaceColors.Dock = System.Windows.Forms.DockStyle.Top;
-            this._workspaceColors.Location = new System.Drawing.Point(15, 603);
+            this._workspaceColors.Location = new System.Drawing.Point(8, 311);
+            this._workspaceColors.Margin = new System.Windows.Forms.Padding(2);
             this._workspaceColors.Name = "_workspaceColors";
-            this._workspaceColors.Size = new System.Drawing.Size(1227, 361);
+            this._workspaceColors.Padding = new System.Windows.Forms.Padding(2);
+            this._workspaceColors.Size = new System.Drawing.Size(613, 179);
             this._workspaceColors.TabIndex = 1;
             this._workspaceColors.TabStop = false;
             this._workspaceColors.Text = "Workspace name colors";
@@ -271,12 +281,12 @@ namespace KomoSwitch.Controls
             this.colorSettingsControl4.ColorHex = "#B93139";
             this.colorSettingsControl4.ColorSetting = KomoSwitch.Models.Settings.EColorSetting.WorkspaceError;
             this.colorSettingsControl4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.colorSettingsControl4.Location = new System.Drawing.Point(3, 272);
+            this.colorSettingsControl4.Location = new System.Drawing.Point(2, 136);
             this.colorSettingsControl4.Margin = new System.Windows.Forms.Padding(0);
             this.colorSettingsControl4.Name = "colorSettingsControl4";
-            this.colorSettingsControl4.Padding = new System.Windows.Forms.Padding(30, 10, 25, 10);
+            this.colorSettingsControl4.Padding = new System.Windows.Forms.Padding(15, 5, 12, 5);
             this.colorSettingsControl4.SettingName = "Error";
-            this.colorSettingsControl4.Size = new System.Drawing.Size(1221, 76);
+            this.colorSettingsControl4.Size = new System.Drawing.Size(609, 38);
             this.colorSettingsControl4.TabIndex = 3;
             this.colorSettingsControl4.ColorPicked += new System.EventHandler(this.ColorSettingsControl_ColorPicked);
             // 
@@ -286,27 +296,27 @@ namespace KomoSwitch.Controls
             this.colorSettingsControl3.ColorHex = "#696969";
             this.colorSettingsControl3.ColorSetting = KomoSwitch.Models.Settings.EColorSetting.WorkspaceWaiting;
             this.colorSettingsControl3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.colorSettingsControl3.Location = new System.Drawing.Point(3, 196);
+            this.colorSettingsControl3.Location = new System.Drawing.Point(2, 98);
             this.colorSettingsControl3.Margin = new System.Windows.Forms.Padding(0);
             this.colorSettingsControl3.Name = "colorSettingsControl3";
-            this.colorSettingsControl3.Padding = new System.Windows.Forms.Padding(30, 10, 25, 10);
+            this.colorSettingsControl3.Padding = new System.Windows.Forms.Padding(15, 5, 12, 5);
             this.colorSettingsControl3.SettingName = "Waiting";
-            this.colorSettingsControl3.Size = new System.Drawing.Size(1221, 76);
+            this.colorSettingsControl3.Size = new System.Drawing.Size(609, 38);
             this.colorSettingsControl3.TabIndex = 2;
             this.colorSettingsControl3.ColorPicked += new System.EventHandler(this.ColorSettingsControl_ColorPicked);
             // 
             // colorSettingsControl2
             // 
             this.colorSettingsControl2.AutoSize = true;
-            this.colorSettingsControl2.ColorHex = "#00B7C3";
+            this.colorSettingsControl2.ColorHex = "#3FC611";
             this.colorSettingsControl2.ColorSetting = KomoSwitch.Models.Settings.EColorSetting.WorkspaceActive;
             this.colorSettingsControl2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.colorSettingsControl2.Location = new System.Drawing.Point(3, 120);
+            this.colorSettingsControl2.Location = new System.Drawing.Point(2, 60);
             this.colorSettingsControl2.Margin = new System.Windows.Forms.Padding(0);
             this.colorSettingsControl2.Name = "colorSettingsControl2";
-            this.colorSettingsControl2.Padding = new System.Windows.Forms.Padding(30, 10, 25, 10);
+            this.colorSettingsControl2.Padding = new System.Windows.Forms.Padding(15, 5, 12, 5);
             this.colorSettingsControl2.SettingName = "Active";
-            this.colorSettingsControl2.Size = new System.Drawing.Size(1221, 76);
+            this.colorSettingsControl2.Size = new System.Drawing.Size(609, 38);
             this.colorSettingsControl2.TabIndex = 1;
             this.colorSettingsControl2.ColorPicked += new System.EventHandler(this.ColorSettingsControl_ColorPicked);
             // 
@@ -315,20 +325,21 @@ namespace KomoSwitch.Controls
             this.colorSettingsControl1.AutoSize = true;
             this.colorSettingsControl1.ColorSetting = KomoSwitch.Models.Settings.EColorSetting.WorkspaceDefault;
             this.colorSettingsControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.colorSettingsControl1.Location = new System.Drawing.Point(3, 34);
+            this.colorSettingsControl1.Location = new System.Drawing.Point(2, 17);
             this.colorSettingsControl1.Margin = new System.Windows.Forms.Padding(0);
             this.colorSettingsControl1.Name = "colorSettingsControl1";
-            this.colorSettingsControl1.Padding = new System.Windows.Forms.Padding(30, 20, 25, 10);
-            this.colorSettingsControl1.Size = new System.Drawing.Size(1221, 86);
+            this.colorSettingsControl1.Padding = new System.Windows.Forms.Padding(15, 10, 12, 5);
+            this.colorSettingsControl1.Size = new System.Drawing.Size(609, 43);
             this.colorSettingsControl1.TabIndex = 0;
             this.colorSettingsControl1.ColorPicked += new System.EventHandler(this.ColorSettingsControl_ColorPicked);
             // 
             // panel2
             // 
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(15, 573);
+            this.panel2.Location = new System.Drawing.Point(8, 296);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1227, 30);
+            this.panel2.Size = new System.Drawing.Size(613, 15);
             this.panel2.TabIndex = 4;
             // 
             // groupBox1
@@ -350,9 +361,11 @@ namespace KomoSwitch.Controls
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(15, 10);
+            this.groupBox1.Location = new System.Drawing.Point(8, 5);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1227, 563);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(613, 291);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General";
@@ -360,19 +373,25 @@ namespace KomoSwitch.Controls
             // _workspaceWidth
             // 
             this._workspaceWidth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._workspaceWidth.Location = new System.Drawing.Point(980, 289);
-            this._workspaceWidth.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
+            this._workspaceWidth.Location = new System.Drawing.Point(489, 149);
+            this._workspaceWidth.Margin = new System.Windows.Forms.Padding(2);
+            this._workspaceWidth.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
             this._workspaceWidth.Name = "_workspaceWidth";
-            this._workspaceWidth.Size = new System.Drawing.Size(215, 38);
+            this._workspaceWidth.Size = new System.Drawing.Size(108, 23);
             this._workspaceWidth.TabIndex = 15;
             // 
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label8.Location = new System.Drawing.Point(30, 230);
+            this.label8.Location = new System.Drawing.Point(15, 119);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(589, 32);
+            this.label8.Size = new System.Drawing.Size(294, 17);
             this.label8.TabIndex = 14;
             this.label8.Text = "Restart is required for changes to take affect";
             // 
@@ -380,18 +399,20 @@ namespace KomoSwitch.Controls
             // 
             this._syncWithTheme.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._syncWithTheme.AutoSize = true;
-            this._syncWithTheme.Location = new System.Drawing.Point(980, 489);
+            this._syncWithTheme.Location = new System.Drawing.Point(488, 252);
+            this._syncWithTheme.Margin = new System.Windows.Forms.Padding(2);
             this._syncWithTheme.Name = "_syncWithTheme";
-            this._syncWithTheme.Size = new System.Drawing.Size(34, 33);
+            this._syncWithTheme.Size = new System.Drawing.Size(18, 17);
             this._syncWithTheme.TabIndex = 13;
             this._syncWithTheme.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(30, 490);
+            this.label7.Location = new System.Drawing.Point(15, 253);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(528, 32);
+            this.label7.Size = new System.Drawing.Size(263, 17);
             this.label7.TabIndex = 12;
             this.label7.Text = "Sync primary colors with Windows theme";
             // 
@@ -400,9 +421,10 @@ namespace KomoSwitch.Controls
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
             this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(980, 424);
+            this.checkBox1.Location = new System.Drawing.Point(488, 219);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(34, 33);
+            this.checkBox1.Size = new System.Drawing.Size(18, 17);
             this.checkBox1.TabIndex = 11;
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
@@ -410,64 +432,79 @@ namespace KomoSwitch.Controls
             // 
             this.label6.AutoSize = true;
             this.label6.Enabled = false;
-            this.label6.Location = new System.Drawing.Point(30, 425);
+            this.label6.Location = new System.Drawing.Point(15, 219);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(314, 32);
+            this.label6.Size = new System.Drawing.Size(157, 17);
             this.label6.TabIndex = 10;
             this.label6.Text = "Hide empty workspaces";
             // 
             // _workspaceGap
             // 
             this._workspaceGap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._workspaceGap.Location = new System.Drawing.Point(980, 354);
-            this._workspaceGap.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
+            this._workspaceGap.Location = new System.Drawing.Point(489, 183);
+            this._workspaceGap.Margin = new System.Windows.Forms.Padding(2);
+            this._workspaceGap.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
             this._workspaceGap.Name = "_workspaceGap";
-            this._workspaceGap.Size = new System.Drawing.Size(215, 38);
+            this._workspaceGap.Size = new System.Drawing.Size(108, 23);
             this._workspaceGap.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(30, 360);
+            this.label5.Location = new System.Drawing.Point(15, 186);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(211, 32);
+            this.label5.Size = new System.Drawing.Size(107, 17);
             this.label5.TabIndex = 7;
             this.label5.Text = "Workspace gap";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(30, 295);
+            this.label4.Location = new System.Drawing.Point(15, 152);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(230, 32);
+            this.label4.Size = new System.Drawing.Size(115, 17);
             this.label4.TabIndex = 6;
             this.label4.Text = "Workspace width";
             // 
             // _appMinWidth
             // 
             this._appMinWidth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._appMinWidth.Location = new System.Drawing.Point(980, 189);
-            this._appMinWidth.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
+            this._appMinWidth.Location = new System.Drawing.Point(489, 98);
+            this._appMinWidth.Margin = new System.Windows.Forms.Padding(2);
+            this._appMinWidth.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
             this._appMinWidth.Name = "_appMinWidth";
-            this._appMinWidth.Size = new System.Drawing.Size(215, 38);
+            this._appMinWidth.Size = new System.Drawing.Size(108, 23);
             this._appMinWidth.TabIndex = 5;
             this._appMinWidth.ValueChanged += new System.EventHandler(this.AppMinWidth_ValueChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 195);
+            this.label3.Location = new System.Drawing.Point(15, 101);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(193, 32);
+            this.label3.Size = new System.Drawing.Size(95, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "App min width";
             // 
             // _selectFontButton
             // 
             this._selectFontButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._selectFontButton.Location = new System.Drawing.Point(980, 112);
+            this._selectFontButton.Location = new System.Drawing.Point(489, 58);
+            this._selectFontButton.Margin = new System.Windows.Forms.Padding(2);
             this._selectFontButton.Name = "_selectFontButton";
-            this._selectFontButton.Size = new System.Drawing.Size(215, 50);
+            this._selectFontButton.Size = new System.Drawing.Size(109, 26);
             this._selectFontButton.TabIndex = 3;
             this._selectFontButton.Text = "Pick";
             this._selectFontButton.UseVisualStyleBackColor = true;
@@ -476,9 +513,10 @@ namespace KomoSwitch.Controls
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 130);
+            this.label2.Location = new System.Drawing.Point(15, 67);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 32);
+            this.label2.Size = new System.Drawing.Size(36, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "Font";
             // 
@@ -487,33 +525,36 @@ namespace KomoSwitch.Controls
             this._statusLineLocationList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._statusLineLocationList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._statusLineLocationList.FormattingEnabled = true;
-            this._statusLineLocationList.Location = new System.Drawing.Point(980, 58);
+            this._statusLineLocationList.Location = new System.Drawing.Point(489, 30);
+            this._statusLineLocationList.Margin = new System.Windows.Forms.Padding(2);
             this._statusLineLocationList.Name = "_statusLineLocationList";
-            this._statusLineLocationList.Size = new System.Drawing.Size(214, 39);
+            this._statusLineLocationList.Size = new System.Drawing.Size(109, 25);
             this._statusLineLocationList.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 65);
+            this.label1.Location = new System.Drawing.Point(15, 34);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(256, 32);
+            this.label1.Size = new System.Drawing.Size(127, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Status line location";
             // 
             // SettingsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1310, 912);
+            this.ClientSize = new System.Drawing.Size(655, 471);
             this.Controls.Add(this.panel1);
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(15, 15);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SettingsForm";
-            this.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KomoSwitch Settings";
@@ -533,6 +574,7 @@ namespace KomoSwitch.Controls
             ((System.ComponentModel.ISupportInitialize)(this._appMinWidth)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private KomoSwitch.Controls.ColorSettingsControl colorSettingsControl2;
