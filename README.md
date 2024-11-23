@@ -7,7 +7,7 @@ Workspace switcher for [komorebi](https://github.com/LGUG2Z/komorebi) tiling win
 * Workspace switching
 * Automatic reconnection on connection loss
 * Workspace name synchronization
-* Customization (**in progress**)
+* Customization
 
 # Installation
 * Download and install the latest [release](https://github.com/sashaboy779/KomoSwitch/releases)

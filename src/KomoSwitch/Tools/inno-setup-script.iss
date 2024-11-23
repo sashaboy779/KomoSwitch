@@ -1,10 +1,10 @@
 [Setup]
 AppId={{DE5C9F6B-A02C-4ED3-9779-DFDA49667362}}
 AppName=KomoSwitch
-AppVersion=0.1.0-alpha
+AppVersion=0.2.0-alpha
 DefaultDirName={commonpf64}\KomoSwitch
 OutputDir=.\Output
-OutputBaseFilename=KomoSwitchSetup-x64-0.1.0-alpha
+OutputBaseFilename=KomoSwitchSetup-x64-0.2.0-alpha
 PrivilegesRequired=admin
 ArchitecturesInstallIn64BitMode=x64compatible
 
@@ -145,7 +145,7 @@ end;
 
 procedure ShowExplorerRestartMessage();
 begin
-  MsgBox('The installation will restart Windows Explorer process', mbInformation, MB_OK);
+  MsgBox('Windows Explorer will now restart', mbInformation, MB_OK);
 end;
 
 procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
@@ -155,7 +155,7 @@ begin
   case CurUninstallStep of
     usUninstall:
       begin
-        MsgBox('The uninstallation will restart Windows Explorer process', mbInformation, MB_OK);
+        MsgBox('Windows Explorer will now restart', mbInformation, MB_OK);
         
         if Exec(ExpandConstant('{dotnet40}\regasm.exe'), '/u "' + ExpandConstant('{app}\KomoSwitch.dll') + '"', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
         begin
