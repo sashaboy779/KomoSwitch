@@ -1,5 +1,5 @@
 # KomoSwitch
-Workspace switcher for [komorebi](https://github.com/LGUG2Z/komorebi) tiling window manager integrated into the Windows taskbar
+Workspace switcher for [komorebi](https://github.com/LGUG2Z/komorebi) tiling window manager integrated into the Windows 10 taskbar
 
 <img src="images%2Fkomoswitch.png" alt="KomoSwitch UI" width="500"/>
 
